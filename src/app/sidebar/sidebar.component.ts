@@ -15,7 +15,7 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
     this.treolan.token$.subscribe((token) => {
       this.token = token;
-      console.log('Token from sidebar component:', token.access_token);
+      // console.log('Token from sidebar component:', token.access_token)
     })
   }
 }

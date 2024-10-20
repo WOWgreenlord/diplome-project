@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.treolan.token$.subscribe((token) => {
       this.token = token;
+      // console.log('Token from header component:', token.access_token)
     })
   }
 
