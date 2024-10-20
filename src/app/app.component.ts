@@ -1,13 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+
+import { TreolanService } from './services/treolan.service';
+import { Token } from './interfaces/Token';
+import { SidebarComponent } from "./sidebar/sidebar.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, SidebarComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'diplome-project-2.0';
+  treolan = inject(TreolanService);
+
+
+  ngOnInit(): void {
+    this.treolan
+      .postToken('t!bRt!0;', '559f956e4aaf', 'antex_api', 'ru.treolan.apps.35')
+      .subscribe((token: Token) => {
+        console.log('Token:', token.access_token);
+      });
+  }
 }
