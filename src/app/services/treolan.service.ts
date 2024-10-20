@@ -9,6 +9,7 @@ import { Token } from '../interfaces/Token';
 })
 export class TreolanService {
   private http = inject(HttpClient);
+  // создаем Subject для глобального доступа к токену для любого компонента
   private tokenSubject = new Subject<Token>();
   token$: Observable<Token> = this.tokenSubject.asObservable();
   tokenUrl: string = 'https://demo.treolan.ru/api/oauth2/token';
@@ -20,6 +21,7 @@ export class TreolanService {
     username: string,
     clientId: string
   ): Observable<Token> {
+    // Прокидываем параметры в запрос
     const body = new HttpParams()
       .set('password', password)
       .set('client_secret', clientSecret)
