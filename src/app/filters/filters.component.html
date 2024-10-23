@@ -2,30 +2,62 @@
   <div class="flex justify-between">
     <h1 class="p-3">Фильтры</h1>
     <button class="p-3 bg-green-200" (click)="togglePanel()">
+      <!-- Иконка стрелки -->
       <svg
         xmlns="http://www.w3.org/2000/svg"
+        fill="none"
         viewBox="0 0 24 24"
-        fill="currentColor"
+        stroke-width="1.5"
+        stroke="currentColor"
         class="size-6 transition-all duration-500"
         [ngClass]="{ 'rotate-90': isOpen, 'rotate-0': !isOpen }"
       >
         <path
-          fill-rule="evenodd"
-          d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
-          clip-rule="evenodd"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="m8.25 4.5 7.5 7.5-7.5 7.5"
         />
       </svg>
     </button>
   </div>
   @if(isOpen) {
-  <div class="flex flex-col relative">
+  <div class="flex flex-col p-3 relative gap-2">
     <label for="categories">Категории</label>
-    <input type="text" id="categories" placeholder="Введите категории" class="pl-8" />
+    <input
+      type="text"
+      id="categories"
+      placeholder="Введите категории"
+      class="pl-8 rounded-md outline-none"
+    />
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       fill="currentColor"
-      class="size-6 absolute left-1 top-6"
+      class="size-6 absolute left-4 top-11"
+    >
+      <path
+        d="M8.25 10.875a2.625 2.625 0 1 1 5.25 0 2.625 2.625 0 0 1-5.25 0Z"
+      />
+      <path
+        fill-rule="evenodd"
+        d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.125 4.5a4.125 4.125 0 1 0 2.338 7.524l2.007 2.006a.75.75 0 1 0 1.06-1.06l-2.006-2.007a4.125 4.125 0 0 0-3.399-6.463Z"
+        clip-rule="evenodd"
+      />
+    </svg>
+  </div>
+  <div class="flex flex-col p-3 relative gap-2">
+    <label for="categories">Вендор</label>
+    <input
+      type="text"
+      id="categories"
+      placeholder="Введите вендора"
+      class="pl-8 rounded-md outline-none"
+    />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      class="size-6 absolute left-4 top-11"
     >
       <path
         d="M8.25 10.875a2.625 2.625 0 1 1 5.25 0 2.625 2.625 0 0 1-5.25 0Z"

@@ -1,8 +1,9 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
 
 import { Token } from '../interfaces/Token';
+import { Category } from '../interfaces/category';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,9 @@ export class TreolanService {
   private tokenSubject = new Subject<Token>();
   token$: Observable<Token> = this.tokenSubject.asObservable();
   tokenUrl: string = 'https://demo.treolan.ru/api/oauth2/token';
-  
+  categoriesUrl: string =
+    'https://demo.treolan.ru/api/1/catalog/getcategories?parentCategoryId=27512';
+
   constructor() {}
   postToken(
     password: string,
@@ -33,5 +36,14 @@ export class TreolanService {
       // Передаем токен в Subject после получения.
       tap((token) => this.tokenSubject.next(token))
     );
+  }
+  getCategories(token: string, parentCategoryId: number): Observable<Category> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+    const params = new HttpParams();
+    params.set('parentCategoryId', parentCategoryId);
+    return this.http.get<Category>(this.categoriesUrl, {headers, params});
   }
 }

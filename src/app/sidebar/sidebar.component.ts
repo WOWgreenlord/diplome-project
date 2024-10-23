@@ -13,7 +13,7 @@ import { HistoryComponent } from "../history/history.component";
 })
 export class SidebarComponent implements OnInit {
   treolan = inject(TreolanService);
-  token: Token | null = null;
+  public token: Token | null = null;
   ngOnInit(): void {
     this.treolan.token$.subscribe((token) => {
       this.token = token;
