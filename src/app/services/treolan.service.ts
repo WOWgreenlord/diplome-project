@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
 
 import { Token } from '../interfaces/Token';
-import { Category } from '../interfaces/category';
+import { Category } from '../interfaces/Category';
 
 @Injectable({
   providedIn: 'root',
