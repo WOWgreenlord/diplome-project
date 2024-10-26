@@ -3,7 +3,7 @@
 >
   <div class="flex justify-between">
     <h1 class="p-3">История поисков</h1>
-    <button class="p-3 bg-green-200" (click)="togglePanel()">
+    <button class="p-3" (click)="togglePanel()">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -25,9 +25,6 @@
   <p class="">History</p>
   }
 </div>
-<button (click)="darkTheme()">
-  Switch to {{isDark ? 'light' : 'dark'}} mode
-</button>
 
-<!-- [ngClass]="{ 'dark:bg-green-200': isDark, 'notDark': !isDark }" -->
+
 
