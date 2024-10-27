@@ -15,9 +15,6 @@ export class DatabaseService {
   getData(): Observable<User[]> {
     return this.http.get<User[]>(this.jsonDbUrl);
   }
-  getUser(): Observable<User> {
-    return this.http.get<User>(this.dbUrl);
-  }
   addUser(user: User): Observable<User> {
     return this.http.get<User[]>(this.dbUrl).pipe(
       map((users) => {
@@ -32,5 +29,25 @@ export class DatabaseService {
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.dbUrl);
   }
-  
+  validateUser(username: string, email: string): Observable<boolean> {
+    return this.http.get<any[]>(this.dbUrl).pipe(
+      map((users) => {
+        return users.some(
+          (user) => user.username === username && user.email === email
+        );
+      })
+    );
+  }
+  getUser(username: string, email: string): Observable<any | null> {
+    return this.http
+      .get<any[]>(this.dbUrl)
+      .pipe(
+        map(
+          (users) =>
+            users.find(
+              (user) => user.username === username && user.email === email
+            ) || null
+        )
+      );
+  }
 }

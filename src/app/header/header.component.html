@@ -8,9 +8,9 @@
       />
     </div>
     <p class="text-center sm:w-4/6 md:w-9/12 lg:w-3/4 xl:w-11/12 dark:text-white">Разработка web-приложения для поиска товаров по каналам дистрибуции на Angular 18</p>
-    <button (click)="addUser()">Add User</button>
+    <!-- <button (click)="addUser()">Add User</button> -->
     <!-- Dark Theme кнопка -->
-    <button class="p-3 box-border border rounded-full border-transparent hover:border-blue-400 transition-all duration-200 hover:text-white hover:bg-blue-500" (click)="darkTheme()">
+    <button class="p-3 box-border border rounded-full border-transparent transition-all duration-200 hover:text-white hover:bg-blue-500" (click)="darkTheme()">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -29,7 +29,7 @@
   </div>
   <nav class="h-14 flex justify-around items-center box-border">
     <!-- Помощь по интерфейсу -->
-    <button class="p-3 box-border border rounded-full border-transparent hover:border-blue-400 transition-all duration-200  hover:text-white hover:bg-blue-500">
+    <button class="p-3 box-border border rounded-full border-transparent transition-all duration-200  hover:text-white hover:bg-blue-500">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -52,7 +52,7 @@
         <input
           type="text"
           placeholder="Введите строку для поиска"
-          class="w-32 h-10 rounded-md border-none outline-none pl-3 pr-8 sm:w-48 md:w-80 xl:w-96 sm:h-8"
+          class="w-32 h-10 rounded-md border-none outline-none pl-3 pr-8 sm:w-48 md:w-80 xl:w-96 sm:h-8 dark:text-black"
         />
         <!-- Поиск иконка -->
         <svg
@@ -72,7 +72,7 @@
       </div>
       <div class="flex gap-3 sm:gap-1">
         <!-- Скачать PDF -->
-        <button class="p-3 box-border border rounded-full border-transparent hover:border-blue-400 transition-all duration-200  hover:text-white hover:bg-blue-500">
+        <button class="p-3 box-border border rounded-full border-transparent transition-all duration-200  hover:text-white hover:bg-blue-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -90,7 +90,7 @@
         </button>
 
         <!-- Корзина -->
-        <button class="p-3 box-border border rounded-full border-transparent hover:border-blue-400 transition-all duration-200  hover:text-white hover:bg-blue-500">
+        <button class="p-3 box-border border rounded-full border-transparent transition-all duration-200  hover:text-white hover:bg-blue-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -109,22 +109,25 @@
       </div>
     </div>
     <div class="flex">
-      <p>аккаунт</p>
-      <!-- Аккаунт -->
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        class="size-6"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-        />
-      </svg>
+      <button class="flex items-center p-2 gap-2 border rounded-full border-transparent transition-all duration-200 hover:text-white hover:bg-blue-500" (click)="openModal()">
+        <p>{{logIn}}</p>
+        <!-- Аккаунт -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+          />
+        </svg>
+      </button>
+      <app-modal [isOpen]="isModalOpen" (close)="closeModal()"></app-modal>
     </div>
   </nav>
 </header>
