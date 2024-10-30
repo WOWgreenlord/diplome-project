@@ -1,34 +1,95 @@
 @if(isOpen) {
-  <!-- Overlay для затемнения фона -->
+<!-- Overlay для затемнения фона -->
+<div
+  class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+>
+  <!-- Модальное окно -->
   <div
-    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+    class="bg-white rounded-lg shadow-lg max-w-md w-full dark:bg-main-surface-400 dark:text-white"
   >
-    <!-- Модальное окно -->
-    <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-      <h2 class="text-xl font-semibold mb-4 text-center">Войдите в учетную запись</h2>
-      <form [formGroup]="profileForm" class="mb-4" (ngSubmit)="onSubmit()">
-        <div>
-          <label for="username">Username:</label>
-          <input type="text" id="username" formControlName="username" class="outline">
-        </div>
-        <div>
-          <label for="email">Email:</label>
-          <input type="email" id="email" formControlName="email" class="outline">
-        </div>
-        @if(loginError) {
-          <div class="text-red-500 mt-2">
-            {{loginError}}
-          </div>
-        }
-        <button type="submit">Вход</button>
-      </form>
-      
+    <div class="border-b flex justify-around items-center p-4">
+      <h2 class="text-xl font-semibold text-center">
+        Войдите в учетную запись
+      </h2>
       <button
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-4"
         (click)="closeModal()"
       >
         Закрыть
       </button>
     </div>
+    <form
+      [formGroup]="profileForm"
+      class="flex flex-col gap-3 m-4"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="flex flex-col gap-2 pb-5 relative">
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="pt-2 pb-2 border-b outline-none dark:bg-main-surface-300 dark:placeholder:text-white dark:border-none dark:rounded-md"
+          autocomplete="off"
+          placeholder="Введите почту"
+        />
+        <p class="absolute top-14 text-red-500" hidden>Error</p>
+      </div>
+
+      <div class="flex flex-col gap-2 pb-5 relative">
+        <label for="password">Пароль:</label>
+        <input
+          id="password"
+          formControlName="password"
+          class="pt-2 pb-2 border-b outline-none dark:bg-main-surface-300 dark:placeholder:text-white dark:border-none dark:rounded-md"
+          autocomplete="off"
+          placeholder="Введите пароль"
+          [type]="passwordType"
+          
+        />
+        <button
+          class="absolute p-2 top-8 left-96 rounded-full"
+          id="showPassword"
+          (click)="showPassword()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+            />
+          </svg>
+        </button>
+        <p class="absolute top-14 text-red-500" hidden>Error</p>
+      </div>
+      @if(loginError) {
+      <div class="text-red-500 mt-2">
+        {{ loginError }}
+      </div>
+      }
+      <button
+        type="submit"
+        class="bg-blue-200 p-2 rounded-md dark:bg-blue-500 dark:text-white hover:text-white hover:bg-blue-500 dark:hover:bg-blue-700"
+      >
+        Вход
+      </button>
+      <div class="flex gap-1 justify-center">
+        <p>Нет учетной записи?</p>
+        <a href="#" class="pl-2 pr-2 underline"> Зарегистрироваться </a>
+      </div>
+    </form>
   </div>
+</div>
 }

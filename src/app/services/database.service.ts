@@ -29,23 +29,23 @@ export class DatabaseService {
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.dbUrl);
   }
-  validateUser(username: string, email: string): Observable<boolean> {
+  validateUser(email: string, password: string): Observable<boolean> {
     return this.http.get<any[]>(this.dbUrl).pipe(
       map((users) => {
         return users.some(
-          (user) => user.username === username && user.email === email
+          (user) => user.password === password && user.email === email
         );
       })
     );
   }
-  getUser(username: string, email: string): Observable<any | null> {
+  getUser(email: string, password: string): Observable<any | null> {
     return this.http
       .get<any[]>(this.dbUrl)
       .pipe(
         map(
           (users) =>
             users.find(
-              (user) => user.username === username && user.email === email
+              (user) => user.email === email && user.password === password
             ) || null
         )
       );

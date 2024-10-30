@@ -1,4 +1,4 @@
-<header class="flex flex-col justify-center bg-blue-200 h-32 gap-3 shadow-md dark:bg-main-dark dark:text-white md:text-base">
+<header class="flex flex-col justify-center bg-blue-200 h-32 gap-3 shadow-md dark:bg-main-surface-400 dark:text-white md:text-base">
   <div class="h-16 flex justify-between px-5 items-center sm:h-12">
     <div class="">
       <img
@@ -7,7 +7,7 @@
         class="w-12"
       />
     </div>
-    <p class="text-center sm:w-4/6 md:w-9/12 lg:w-3/4 xl:w-11/12 dark:text-white">Разработка web-приложения для поиска товаров по каналам дистрибуции на Angular 18</p>
+    <h1 class="text-center sm:w-4/6 md:w-9/12 lg:w-3/4 xl:w-11/12">Разработка web-приложения для поиска товаров по каналам дистрибуции на Angular 18</h1>
     <!-- <button (click)="addUser()">Add User</button> -->
     <!-- Dark Theme кнопка -->
     <button class="p-3 box-border border rounded-full border-transparent transition-all duration-200 hover:text-white hover:bg-blue-500" (click)="darkTheme()">
@@ -46,13 +46,14 @@
       </svg>
     </button>
 
-    <div class="flex gap-8 h-10 items-center sm:gap-3">
-      <p>курс цб</p>
+    <div class="w-8/12 flex h-10 items-center justify-center sm:gap-3">
+      <!-- gap-8 ^ оттуда -->
+      <p>курс цб <span></span></p>
       <div class="relative">
         <input
           type="text"
           placeholder="Введите строку для поиска"
-          class="w-32 h-10 rounded-md border-none outline-none pl-3 pr-8 sm:w-48 md:w-80 xl:w-96 sm:h-8 dark:text-black"
+          class="w-32 h-10 rounded-md border-none outline-none pl-3 pr-8 sm:w-48 md:w-80 xl:w-96 sm:h-8 dark:bg-main-surface-300 dark:placeholder:text-white"
         />
         <!-- Поиск иконка -->
         <svg
@@ -61,7 +62,7 @@
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="size-6 absolute right-2 top-2 sm:top-1 dark:text-black"
+          class="size-6 absolute right-2 top-2 sm:top-1"
         >
           <path
             stroke-linecap="round"
@@ -128,6 +129,12 @@
         </svg>
       </button>
       <app-modal [isOpen]="isModalOpen" (close)="closeModal()"></app-modal>
+      <!-- <span class="tooltip">
+        <button class="tooltip-toggle" type="button">Info</button>
+        <span class="tooltip-text">
+          это подсказка
+        </span>
+      </span> -->
     </div>
   </nav>
 </header>

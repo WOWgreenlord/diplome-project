@@ -5,7 +5,7 @@ import { Token } from '../interfaces/Token';
 import { TreolanService } from '../services/treolan.service';
 import { DatabaseService } from '../services/database.service';
 import { User } from '../interfaces/User';
-import { ModalComponent } from "../modal/modal.component";
+import { ModalComponent } from '../modal/modal.component';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -18,7 +18,7 @@ import { AuthService } from '../services/auth.service';
 export class HeaderComponent implements OnInit {
   treolan = inject(TreolanService);
   database = inject(DatabaseService);
-  auth = inject(AuthService)
+  auth = inject(AuthService);
   token: Token | null = null;
   isDark: boolean = false;
   isModalOpen: boolean = false;
@@ -28,6 +28,7 @@ export class HeaderComponent implements OnInit {
     name: 'Ivan Ivanov',
     username: 'Vano',
     email: 'vano.ivanov@yandex.u',
+    password: '123'
   };
 
   ngOnInit(): void {
@@ -39,9 +40,9 @@ export class HeaderComponent implements OnInit {
       console.log(response);
       this.users = response;
     });
-    this.auth.currentUser$.subscribe(name => {
+    this.auth.currentUser$.subscribe((name) => {
       this.logIn = name;
-    })
+    });
   }
   darkTheme() {
     this.isDark = !this.isDark;
