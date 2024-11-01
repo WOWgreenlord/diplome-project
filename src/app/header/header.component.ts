@@ -22,6 +22,8 @@ export class HeaderComponent implements OnInit {
   token: Token | null = null;
   isDark: boolean = false;
   isModalOpen: boolean = false;
+  isToggled: boolean = false;
+  DarkTheme: string = 'Темную тему'
   logIn: string = 'Выполните вход';
   users: User[] = [];
   newUser = {
@@ -46,10 +48,12 @@ export class HeaderComponent implements OnInit {
   }
   darkTheme() {
     this.isDark = !this.isDark;
-    if (this.isDark) {
+    if (this.isDark && this.DarkTheme) {
       document.documentElement.classList.add('dark');
+      this.DarkTheme = 'Светлую тему'
     } else {
       document.documentElement.classList.remove('dark');
+      this.DarkTheme = 'Темную тему';
     }
   }
   addUser() {
@@ -65,5 +69,12 @@ export class HeaderComponent implements OnInit {
   }
   closeModal() {
     this.isModalOpen = false;
+  }
+  toggle() {
+    if(this.isToggled === false) {
+      this.isToggled = true
+    } else {
+      this.isToggled = false;
+    }
   }
 }

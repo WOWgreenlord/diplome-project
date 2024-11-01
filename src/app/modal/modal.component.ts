@@ -1,21 +1,36 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { ReactiveFormsModule, FormGroup, FormControl, RequiredValidator } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormGroup,
+  FormControl,
+  RequiredValidator,
+  FormsModule,
+} from '@angular/forms';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 
 import { DatabaseService } from '../services/database.service';
 import { AuthService } from '../services/auth.service';
+import { RegisterComponent } from '../register/register.component';
 
 @Component({
   selector: 'app-modal',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule],
+  imports: [
+    ReactiveFormsModule,
+    FormsModule,
+    RegisterComponent,
+    RouterLink,
+    RouterLinkActive,
+  ],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.css',
 })
 export class ModalComponent {
   @Input() isOpen = false;
   @Output() close = new EventEmitter<void>();
+  isRegisterOpen: boolean = false;
+  router = inject(Router);
   database = inject(DatabaseService);
   auth = inject(AuthService);
   loginError: string = '';
