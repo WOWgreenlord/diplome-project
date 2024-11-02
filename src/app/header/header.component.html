@@ -37,7 +37,7 @@
       </button>
       @if(isToggled) {
       <p
-        class="tooltiptext-left flex items-center absolute z-10 w-40 bg-blue-500 text-center top-1 right-16 rounded-lg h-13 text-white"
+        class="tooltiptext-left flex items-center absolute z-10 w-40 bg-blue-500 text-center -top-1 right-16 rounded-lg h-14 text-white"
       >
         Переключиться на {{ DarkTheme }}
       </p>
@@ -68,7 +68,7 @@
       </button>
       @if(isToggled) {
       <p
-        class="transition-all duration-1000 tooltiptext-right flex items-center absolute z-10 w-28 bg-blue-500 text-center top-1 left-16 rounded-lg h-13 text-white"
+        class="tooltiptext-right flex items-center absolute z-10 w-28 bg-blue-500 text-center -top-1 left-16 rounded-lg h-14 text-white"
       >
         Подсказка по интерфейсу
       </p>
@@ -121,8 +121,6 @@
               />
             </svg>
           </button>
-        </span>
-        <span class="bucket realtive inline-block">
           <!-- Корзина -->
           <button
             class="p-3 box-border border rounded-full border-transparent transition-all duration-200 hover:text-white hover:bg-blue-500"
@@ -142,45 +140,55 @@
               />
             </svg>
           </button>
-          <!-- @if(isToggled) { -->
+          @if(isToggled) {
           <p
-            class="tooltiptext-right flex items-center absolute z-10 w-28 bg-blue-500 text-center rounded-lg h-13 text-white right-28"
+            class="tooltiptext-right flex items-center justify-center absolute z-10 w-28 bg-blue-500 rounded-lg h-14 text-white -top-1 left-28"
           >
-            Подсказка по интерфейсу
+            Корзина
           </p>
-          <!-- } -->
+          }
+          @if(isToggled) {
+          <p
+            class="tooltiptext-top flex items-center justify-center absolute z-10 w-28 bg-blue-500 rounded-lg h-14 text-white top-16 -left-7"
+          >
+            Скачать PDF
+          </p>
+          }
         </span>
       </div>
     </div>
     <div class="flex">
-      <button
-        class="flex items-center p-2 gap-2 border rounded-full border-transparent transition-all duration-200 hover:text-white hover:bg-blue-500"
-        (click)="openModal()"
-      >
-        <p>{{ logIn }}</p>
-        <!-- Аккаунт -->
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="size-6"
+      <span class="relative inline-block">
+        <button
+          class="flex items-center p-2 gap-2 border rounded-full border-transparent transition-all duration-200 hover:text-white hover:bg-blue-500"
+          (click)="openModal()"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-          />
-        </svg>
-      </button>
-      <app-modal [isOpen]="isModalOpen" (close)="closeModal()"></app-modal>
-      <!-- <span class="tooltip">
-        <button class="tooltip-toggle" type="button">Info</button>
-        <span class="tooltip-text">
-          это подсказка
-        </span>
-      </span> -->
+          <p>{{ logIn }}</p>
+          <!-- Аккаунт -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+            />
+          </svg>
+        </button>
+        <app-modal [isOpen]="isModalOpen" (close)="closeModal()"></app-modal>
+        @if(isToggled) {
+        <p
+          class="tooltiptext-left flex items-center absolute z-10 w-32 bg-blue-500 text-center rounded-lg h-14 text-white -top-2 -left-36"
+        >
+          Вход в учетную запись
+        </p>
+        }
+      </span>
     </div>
   </nav>
 </header>
