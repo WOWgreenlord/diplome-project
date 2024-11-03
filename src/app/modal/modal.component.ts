@@ -68,5 +68,6 @@ export class ModalComponent {
     } else {
       this.passwordType = 'password';
     }
+    console.log('click')
   }
 }

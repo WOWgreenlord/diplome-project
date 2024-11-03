@@ -47,7 +47,7 @@
           [type]="passwordType"
         />
         <button
-          class="absolute p-2 top-8 left-96 rounded-full"
+          class="absolute p-2 top-8 left-80 rounded-full z-10 ml-12"
           id="showPassword"
           (click)="showPassword()"
         >
@@ -73,11 +73,11 @@
         </button>
         <p class="absolute top-14 text-red-500" hidden>Error</p>
       </div>
-      @if(loginError) {
+      <!-- @if(loginError) {
       <div class="text-red-500 mt-2">
         {{ loginError }}
       </div>
-      }
+      } -->
       <button
         type="submit"
         class="bg-blue-200 p-2 rounded-md dark:bg-blue-500 dark:text-white hover:text-white hover:bg-blue-500 dark:hover:bg-blue-700"
