@@ -180,6 +180,15 @@
             />
           </svg>
         </button>
+        @if(isLogged) {
+          <button
+            class="flex items-center p-2 gap-2 border rounded-full border-transparent transition-all duration-200 hover:text-white hover:bg-blue-500"
+            (click)="logoutClick()"
+          >
+            <p>Выход</p>
+            <!-- Аккаунт -->
+          </button>
+        }
         <app-modal [isOpen]="isModalOpen" (close)="closeModal()"></app-modal>
         @if(isToggled) {
         <p

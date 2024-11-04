@@ -34,6 +34,7 @@ export class ModalComponent {
   database = inject(DatabaseService);
   auth = inject(AuthService);
   loginError: string = '';
+  username: string = '';
   passwordType: string = 'password';
 
   profileForm = new FormGroup({
@@ -52,6 +53,8 @@ export class ModalComponent {
       this.database.getUser(email, password).subscribe((user) => {
         if (user) {
           this.auth.setUser(user.name);
+          this.auth.isLogged$.next(true);
+          this.username = user.name;
           this.loginError = '';
           this.closeModal();
         } else {

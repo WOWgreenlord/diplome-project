@@ -1,4 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 
 import { Token } from '../interfaces/Token';
@@ -23,11 +24,13 @@ export class HeaderComponent implements OnInit {
   database = inject(DatabaseService);
   auth = inject(AuthService);
   rates = inject(RatesService);
+  destroyRef = inject(DestroyRef);
   token: Token | null = null;
   isDark: boolean = false;
   isModalOpen: boolean = false;
   isToggled: boolean = false;
-  DarkTheme: string = 'Темную тему'
+  isLogged: boolean = false;
+  DarkTheme: string = 'Темную тему';
   logIn: string = 'Выполните вход';
   ratesEUR: number = 0;
   users: User[] = [];
@@ -35,8 +38,9 @@ export class HeaderComponent implements OnInit {
     name: 'Ivan Ivanov',
     username: 'Vano',
     email: 'vano.ivanov@yandex.u',
-    password: '123'
+    password: '123',
   };
+  constructor() {}
 
   ngOnInit(): void {
     this.treolan.token$.subscribe((token) => {
@@ -47,8 +51,15 @@ export class HeaderComponent implements OnInit {
       console.log(response);
       this.users = response;
     });
-    this.auth.currentUser$.subscribe((name) => {
-      this.logIn = name;
+    this.auth.isLogged$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((value) => {
+      // console.log(value)
+      if(value) {
+        this.isLogged = true;
+        this.logIn = this.auth.username;
+      } else {
+        this.isLogged = false;
+        this.logIn = 'Выполните вход';
+      }
     });
     // this.rates.getRates().subscribe(response => {
     //   this.ratesEUR = response.rates.RUB;
@@ -59,7 +70,7 @@ export class HeaderComponent implements OnInit {
     this.isDark = !this.isDark;
     if (this.isDark && this.DarkTheme) {
       document.documentElement.classList.add('dark');
-      this.DarkTheme = 'Светлую тему'
+      this.DarkTheme = 'Светлую тему';
     } else {
       document.documentElement.classList.remove('dark');
       this.DarkTheme = 'Темную тему';
@@ -80,10 +91,14 @@ export class HeaderComponent implements OnInit {
     this.isModalOpen = false;
   }
   toggle() {
-    if(this.isToggled === false) {
-      this.isToggled = true
+    if (this.isToggled === false) {
+      this.isToggled = true;
     } else {
       this.isToggled = false;
     }
+  }
+  logoutClick() {
+    this.auth.logOut();
+    console.log('vihod header')
   }
 }
