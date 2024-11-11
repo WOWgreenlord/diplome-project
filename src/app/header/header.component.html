@@ -161,7 +161,7 @@
       <span class="relative inline-block">
         <button
           class="flex items-center p-2 gap-2 border rounded-full border-transparent transition-all duration-200 hover:text-white hover:bg-blue-500"
-          (click)="openModal()"
+          (click)="openModal()" (mouseenter)="isShowAccountInfo= true " (mouseleave)="isShowAccountInfo = false"
         >
           <p>{{ logIn }}</p>
           <!-- Аккаунт -->
@@ -180,6 +180,12 @@
             />
           </svg>
         </button>
+        @if(isLogged && isShowAccountInfo) {
+          <div>
+            <h3>Добро пожаловать, {{logIn}}</h3>
+            <p>Имя пользователя {{auth.username}}</p>
+          </div>
+        }
         @if(isLogged) {
           <button
             class="flex items-center p-2 gap-2 border rounded-full border-transparent transition-all duration-200 hover:text-white hover:bg-blue-500"

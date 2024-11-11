@@ -30,6 +30,7 @@ export class HeaderComponent implements OnInit {
   isModalOpen: boolean = false;
   isToggled: boolean = false;
   isLogged: boolean = false;
+  isShowAccountInfo: boolean = false;
   DarkTheme: string = 'Темную тему';
   logIn: string = 'Выполните вход';
   ratesEUR: number = 0;
@@ -51,16 +52,13 @@ export class HeaderComponent implements OnInit {
       console.log(response);
       this.users = response;
     });
-    this.auth.isLogged$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((value) => {
-      // console.log(value)
-      if(value) {
-        this.isLogged = true;
-        this.logIn = this.auth.username;
-      } else {
-        this.isLogged = false;
-        this.logIn = 'Выполните вход';
-      }
-    });
+    this.auth.isLogged$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((value) => {
+        // console.log(value)
+        this.isLogged = value;
+        this.logIn = value ? this.auth.username : 'Выполните вход';
+      });
     // this.rates.getRates().subscribe(response => {
     //   this.ratesEUR = response.rates.RUB;
     //   this.ratesEUR = +this.ratesEUR.toFixed(2);
@@ -85,7 +83,14 @@ export class HeaderComponent implements OnInit {
     });
   }
   openModal() {
-    this.isModalOpen = true;
+    if (this.isLogged) {
+      this.showAccountInfo();
+    } else {
+      this.isModalOpen = true;
+    }
+  }
+  showAccountInfo() {
+    console.log('Информация об аккаунте:', this.auth.username);
   }
   closeModal() {
     this.isModalOpen = false;
@@ -99,6 +104,6 @@ export class HeaderComponent implements OnInit {
   }
   logoutClick() {
     this.auth.logOut();
-    console.log('vihod header')
+    console.log('vihod header');
   }
 }
