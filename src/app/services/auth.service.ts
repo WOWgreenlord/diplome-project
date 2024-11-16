@@ -9,9 +9,18 @@ export class AuthService {
   // private userSource = new BehaviorSubject<string>('Выполните вход');
   public currentUser$ = new BehaviorSubject<string>('');
   private userName: string = '';
+  private eMail: string = '';
+  private fullName: string = '';
   get username(): string {
     return this.userName;
   }
+  get email(): string {
+    return this.eMail;
+  }
+  get fullname(): string {
+    return this.fullName;
+  }
+  
 
   constructor() {}
 
@@ -19,6 +28,12 @@ export class AuthService {
     // this.userSource.next(name);
     this.userName = name;
     this.isLogged$.next(true);
+  }
+  setEmail(email: string) {
+    this.eMail = email;
+  }
+  setUserFullname(fullname: string) {
+    this.fullName = fullname;
   }
 
   logOut() {

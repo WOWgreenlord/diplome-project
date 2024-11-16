@@ -12,6 +12,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { DatabaseService } from '../services/database.service';
 import { AuthService } from '../services/auth.service';
 import { RegisterComponent } from '../register/register.component';
+import { User } from '../interfaces/User';
 
 @Component({
   selector: 'app-modal',
@@ -28,6 +29,7 @@ import { RegisterComponent } from '../register/register.component';
 })
 export class ModalComponent {
   @Input() isOpen = false;
+  @Input() isOpenInfo = false;
   @Output() close = new EventEmitter<void>();
   isRegisterOpen: boolean = false;
   router = inject(Router);
@@ -35,6 +37,7 @@ export class ModalComponent {
   auth = inject(AuthService);
   loginError: string = '';
   username: string = '';
+  email: string = '';
   passwordType: string = 'password';
 
   profileForm = new FormGroup({
@@ -53,8 +56,11 @@ export class ModalComponent {
       this.database.getUser(email, password).subscribe((user) => {
         if (user) {
           this.auth.setUser(user.name);
+          this.auth.setEmail(user.email);
+          this.auth.setUserFullname(user.username);
           this.auth.isLogged$.next(true);
           this.username = user.name;
+          this.email = user.email
           this.loginError = '';
           this.closeModal();
         } else {

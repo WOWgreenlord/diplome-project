@@ -8,9 +8,21 @@ import { Observable } from 'rxjs';
 export class RatesService {
   constructor() {}
   http = inject(HttpClient);
-  apiUrl: string = 'http://api.exchangeratesapi.io/v1/';
-  access_key: string = '3cd9bd94af6fde86bc8688a61099b4bb';
-  getRates(): Observable<any> {
-    return this.http.get(this.apiUrl + 'latest?access_key=' + this.access_key);
+  apiUrl: string =
+    'https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_EdBWKDyDfMgzEvr26K0CsdIR7crPO8TVVV7JChFs';
+  api_key: string = 'fca_live_EdBWKDyDfMgzEvr26K0CsdIR7crPO8TVVV7JChFs';
+  getRatesUSD(): Observable<any> {
+    const params = {
+      base_currency: 'USD',
+      currencies: 'RUB',
+    };
+    return this.http.get(this.apiUrl, { params });
+  }
+  getRatesEUR(): Observable<any> {
+    const params = {
+      base_currency: 'EUR',
+      currencies: 'RUB',
+    };
+    return this.http.get(this.apiUrl, { params });
   }
 }

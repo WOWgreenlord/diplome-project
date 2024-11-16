@@ -28,12 +28,13 @@ export class HeaderComponent implements OnInit {
   token: Token | null = null;
   isDark: boolean = false;
   isModalOpen: boolean = false;
+  isModalInfoOpen: boolean = false;
   isToggled: boolean = false;
   isLogged: boolean = false;
-  isShowAccountInfo: boolean = false;
   DarkTheme: string = 'Темную тему';
   logIn: string = 'Выполните вход';
   ratesEUR: number = 0;
+  ratesUSD: number = 0;
   users: User[] = [];
   newUser = {
     name: 'Ivan Ivanov',
@@ -59,9 +60,15 @@ export class HeaderComponent implements OnInit {
         this.isLogged = value;
         this.logIn = value ? this.auth.username : 'Выполните вход';
       });
-    // this.rates.getRates().subscribe(response => {
-    //   this.ratesEUR = response.rates.RUB;
+    // this.rates.getRatesUSD().subscribe(data => {
+    //   this.ratesUSD = data.data.RUB
+    //   this.ratesUSD = +this.ratesUSD.toFixed(2);
+    //   console.log(data.data.RUB)
+    // })
+    // this.rates.getRatesEUR().subscribe(data => {
+    //   this.ratesEUR = data.data.RUB
     //   this.ratesEUR = +this.ratesEUR.toFixed(2);
+    //   console.log(`EUR TO RUB:${data.data.RUB}`)
     // })
   }
   darkTheme() {
@@ -89,11 +96,16 @@ export class HeaderComponent implements OnInit {
       this.isModalOpen = true;
     }
   }
+  openModalInfo() {
+    this.isModalInfoOpen = true;
+    // this.isModalOpen = true;
+  }
   showAccountInfo() {
     console.log('Информация об аккаунте:', this.auth.username);
   }
   closeModal() {
     this.isModalOpen = false;
+    this.isModalInfoOpen = false;
   }
   toggle() {
     if (this.isToggled === false) {
