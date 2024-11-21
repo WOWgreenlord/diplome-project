@@ -20,7 +20,7 @@ import { User } from '../interfaces/User';
   imports: [
     ReactiveFormsModule,
     FormsModule,
-    RegisterComponent,
+    // RegisterComponent,
     RouterLink,
     RouterLinkActive,
   ],
@@ -32,6 +32,7 @@ export class ModalComponent {
   @Input() isOpenInfo = false;
   @Output() close = new EventEmitter<void>();
   isRegisterOpen: boolean = false;
+  isPasswordShown: boolean = false;
   router = inject(Router);
   database = inject(DatabaseService);
   auth = inject(AuthService);
@@ -74,9 +75,10 @@ export class ModalComponent {
   showPassword() {
     if (this.passwordType === 'password') {
       this.passwordType = 'text';
+      this.isPasswordShown = true;
     } else {
       this.passwordType = 'password';
+      this.isPasswordShown = false;
     }
-    console.log('click')
   }
 }
