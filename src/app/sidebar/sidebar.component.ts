@@ -1,4 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
+
 import { TreolanService } from '../services/treolan.service';
 import { Token } from '../interfaces/Token';
 import { FiltersComponent } from "../filters/filters.component";
@@ -17,7 +18,7 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
     this.treolan.token$.subscribe((token) => {
       this.token = token;
-      // console.log('Token from sidebar component:', token.access_token)
+      console.log('Token from sidebar component:', token.access_token)
     })
   }
 }

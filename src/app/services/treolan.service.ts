@@ -37,13 +37,13 @@ export class TreolanService {
       tap((token) => this.tokenSubject.next(token))
     );
   }
-  getCategories(token: string, parentCategoryId: number): Observable<Category> {
+  getCategories(token: string): Observable<Category> {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     });
     const params = new HttpParams();
-    params.set('parentCategoryId', parentCategoryId);
-    return this.http.get<Category>(this.categoriesUrl, {headers, params});
+    params.set('parentCategoryId', 27515);
+    return this.http.get<Category>(this.categoriesUrl, { headers, params });
   }
 }

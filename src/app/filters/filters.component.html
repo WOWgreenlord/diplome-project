@@ -1,4 +1,6 @@
-<div class="rounded-md bg-blue-200 shadow-md dark:bg-main-surface-400 dark:text-white">
+<div
+  class="rounded-md bg-blue-200 shadow-md dark:bg-main-surface-400 dark:text-white"
+>
   <div class="flex justify-between">
     <h1 class="p-3">Фильтры</h1>
     <button class="p-3 dark:text-blue-500" (click)="togglePanel()">
@@ -20,15 +22,50 @@
       </svg>
     </button>
   </div>
-  @if(isOpen) {
+  <!-- @if(isOpen) { -->
   <div class="flex flex-col p-3 relative gap-2">
     <label for="categories">Категории</label>
     <input
+      [formControl]="typeahead"
+      (input)="suggest()"
       type="text"
       id="categories"
       placeholder="Введите категории"
       class="pl-8 rounded-md outline-none"
     />
+    @if(suggestions.length) {
+      <ul class="">
+        @for(s of suggestions; track s) {
+          <li class="cursor-pointer" (click)="selectCategory(s)">{{s}}</li>
+        }
+      </ul>
+    }
+    <!-- ------------------------------------------------------------version 2 -->
+    <!-- @if(filteredCategories.length > 0) {
+      <ul class="absolute bg-white border border-gray-200 rounded-md shadow-md max-h-40 overflow-auto w-full mt-14 z-10">
+        @for(category of categories; track category) {
+         <li (click)="selectCategory(category)" class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+          {{category.Name}}
+         </li> 
+        }
+      </ul>
+    } -->
+      <!-- ---------------------------------------------------------version 1 -->
+    <!-- @for(category of categories; track category) {
+      {{category.Name}}
+    } -->
+    <!-- @if(filteredCategories.length > 0) {
+    <ul class="z-10 bg-white border border-gray-300 rounded-md shadow-md mt-2 max-h-40 overflow-y-auto w-full">
+      @for(category of filteredCategories; track category) {
+      <li
+        (click)="selectCategory(category.Name)"
+        class="px-4 py-2 cursor-pointer hover:bg-gray-100"
+      >
+        {{ category.Name }}
+      </li>
+      }
+    </ul>
+    } -->
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
@@ -44,6 +81,7 @@
         clip-rule="evenodd"
       />
     </svg>
+    
   </div>
   <div class="flex flex-col p-3 relative gap-2">
     <label for="vendors">Вендор</label>
@@ -69,5 +107,5 @@
       />
     </svg>
   </div>
-  }
+  <!-- } -->
 </div>
