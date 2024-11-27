@@ -27,18 +27,21 @@ export class FiltersComponent implements OnInit {
     this.isOpen = !this.isOpen;
   }
   ngOnInit(): void {
-    this.treolan.token$.subscribe((token) => {
-      this.token = token;
-      this.treolan
-        .getCategories(this.token.access_token)
-        .subscribe((response) => {
-          //  console.log(response.data)
-          this.categories = response.data;
-          this.categoryNames = this.categories.map((category) => category.Name);
-          console.log(this.categoryNames);
-          console.log('Загруженные категории:', this.categories);
-        });
-    });
+    // this.treolan.token$.subscribe((token) => {
+    //   this.token = token;
+    //   this.treolan
+    //     .getCategories(this.token.access_token)
+    //     .subscribe((response) => {
+    //       //  console.log(response.data) Получение категорий
+    //       // this.categories = response.data;
+    //       this.categoryNames = this.categories.map((category) => category.Name);
+    //       // console.log(this.categoryNames); Получений имен категорий
+    //       // console.log('Загруженные категории:', this.categories); Получение имен категорий записанных в свойство
+    //     });
+    //     // this.treolan.getVendors(this.token.access_token).subscribe((response) => {
+    //     //   // console.log('вендоры:', response); получение вендоров
+    //     // })
+    // });
   }
 
   suggest() {

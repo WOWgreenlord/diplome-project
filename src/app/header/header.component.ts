@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit {
       // console.log('Token from header component:', token.access_token)
     });
     this.database.getAllUsers().subscribe((response) => {
-      console.log(response);
+      // console.log(response); Получение всех пользователей
       this.users = response;
     });
     this.auth.isLogged$
@@ -117,5 +117,10 @@ export class HeaderComponent implements OnInit {
   logoutClick() {
     this.auth.logOut();
     console.log('vihod header');
+  }
+  getProduct() {
+    this.treolan.getProducts(this.token!.access_token).subscribe(response => {
+      console.log(response)
+    })
   }
 }

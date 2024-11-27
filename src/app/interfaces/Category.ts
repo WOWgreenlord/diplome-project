@@ -1,5 +1,4 @@
 export interface Category {
-  data: any,
   Id: number,
   Name: string,
   ParenId: number,
