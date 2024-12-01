@@ -1,10 +1,28 @@
-<div class="flex content mt-3 mb-3 mr-3 bg-blue-200 grow rounded-xl shadow-md dark:bg-main-surface-400 dark:text-white">
-  <ul class="flex flex-wrap">
-    @for(category of catArr; track category) {
-      <li class="border flex flex-col w-24">
-        <p class="w-9">{{category.Name}}</p>
-        <img [src]="category.CategoryIconLink" alt="Category image" class="w-24 h-24">
-      </li>
-    }
-  </ul>
+<div
+  class="flex content mt-3 mb-3 mr-3 bg-blue-200 grow rounded-xl shadow-md dark:bg-main-surface-400 dark:text-white"
+>
+  <div class="w-full flex justify-center">
+    <p-carousel
+      [value]="catArr"
+      [numVisible]="4"
+      [numScroll]="2"
+      [circular]="false"
+      class="w-4/5 overflow-hidden"
+    >
+      <ng-template let-category pTemplate="category">
+        <div class="p-3 flex justify-center items-center">
+          <div
+            class="category h-56 w-52 flex flex-col justify-center items-center" (click)="selectCategory(category.Id)"
+          >
+            <div class="flex w-full items-center justify-center">
+              <img [src]="category.CategoryIconLink" alt="" class="w-24" />
+            </div>
+            <h3 class="text-center mt-2">
+              {{ category.Name }}
+            </h3>
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div>
 </div>

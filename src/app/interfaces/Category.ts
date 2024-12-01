@@ -1,9 +1,9 @@
 export interface Category {
-  Id: number,
-  Name: string,
-  ParenId: number,
-  HasChild: boolean,
-  CategoryIconLink: string,
+    Id: number;
+    Name: string;
+    ParenId: number;
+    HasChild: boolean;
+    CategoryIconLink: string;
 }
 
 // export interface CategoryResponse {

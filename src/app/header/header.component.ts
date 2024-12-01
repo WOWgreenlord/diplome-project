@@ -36,6 +36,7 @@ export class HeaderComponent implements OnInit {
   ratesEUR: number = 0;
   ratesUSD: number = 0;
   users: User[] = [];
+  categoryId: number = 0;
   newUser = {
     name: 'Ivan Ivanov',
     username: 'Vano',
@@ -70,6 +71,7 @@ export class HeaderComponent implements OnInit {
     //   this.ratesEUR = +this.ratesEUR.toFixed(2);
     //   console.log(`EUR TO RUB:${data.data.RUB}`)
     // })
+    console.log(this.categoryId);
   }
   darkTheme() {
     this.isDark = !this.isDark;
@@ -118,9 +120,14 @@ export class HeaderComponent implements OnInit {
     this.auth.logOut();
     console.log('vihod header');
   }
-  getProduct() {
-    this.treolan.getProducts(this.token!.access_token).subscribe(response => {
-      console.log(response)
+  // getProduct() {
+  //   this.treolan.getProducts(this.token!.access_token).subscribe(response => {
+  //     console.log(response)
+  //   })
+  // }
+  getProductsByCategory() {
+    this.treolan.getProducts(this.token!.access_token, this.categoryId).subscribe(response => {
+      console.log(response);
     })
   }
 }

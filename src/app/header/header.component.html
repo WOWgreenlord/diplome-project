@@ -106,6 +106,7 @@
           type="text"
           placeholder="Введите строку для поиска"
           class="w-32 h-10 rounded-md border-none outline-none pl-3 pr-8 sm:w-48 md:w-80 xl:w-96 sm:h-8 dark:bg-main-surface-300 dark:placeholder:text-white"
+          [(ngModel)]="categoryId"
         />
         <!-- Поиск иконка -->
         <svg
@@ -115,7 +116,7 @@
           stroke-width="1.5"
           stroke="currentColor"
           class="size-6 absolute right-2 top-2 sm:top-1"
-          (click)="getProduct()"
+          (click)="getProductsByCategory()"
         >
           <path
             stroke-linecap="round"
