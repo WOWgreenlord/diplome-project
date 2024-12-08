@@ -1,16 +1,17 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { TreolanService } from '../services/treolan.service';
 import { Token } from '../interfaces/Token';
-import { FiltersComponent } from "../filters/filters.component";
+// import { FiltersComponent } from "../filters/filters.component";
 import { HistoryComponent } from "../history/history.component";
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [FiltersComponent, HistoryComponent],
+  imports: [HistoryComponent, RouterLink],
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.css'
+  styleUrl: './sidebar.component.css',
 })
 export class SidebarComponent implements OnInit {
   treolan = inject(TreolanService);
@@ -19,6 +20,6 @@ export class SidebarComponent implements OnInit {
     this.treolan.token$.subscribe((token) => {
       this.token = token;
       // console.log('Token from sidebar component:', token.access_token) получение токена из сайдбара
-    })
+    });
   }
 }

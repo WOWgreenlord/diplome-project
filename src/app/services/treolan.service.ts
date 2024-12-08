@@ -4,6 +4,7 @@ import { BehaviorSubject, map, Observable, Subject, tap } from 'rxjs';
 
 import { Token } from '../interfaces/Token';
 import { Category } from '../interfaces/Category';
+import { Vendor } from '../interfaces/Vendor';
 
 @Injectable({
   providedIn: 'root',
@@ -11,16 +12,14 @@ import { Category } from '../interfaces/Category';
 export class TreolanService {
   private http = inject(HttpClient);
   // создаем Subject для глобального доступа к токену для любого компонента
-  private tokenSubject = new Subject<Token>();
-  token$: Observable<Token> = this.tokenSubject.asObservable();
+  private tokenSubject = new BehaviorSubject<Token | null>(null);
+  token$: Observable<Token | null> = this.tokenSubject.asObservable();
   // categoryId: number = 0;
   tokenUrl: string = 'https://demo.treolan.ru/api/oauth2/token';
   categoriesUrl: string =
     'https://demo.treolan.ru/api/1/catalog/getcategories?parentCategoryId=27512';
-  vendorsUrl: string =
-    'https://demo.treolan.ru/api/1/catalog/getvendors?productCategoryId=70';
-  catalogSearchUrl: string =
-    `https://demo.treolan.ru/api/1/catalog/search?`;
+  vendorsUrl: string = 'https://demo.treolan.ru/api/1/catalog/getvendors?';
+  catalogSearchUrl: string = `https://demo.treolan.ru/api/1/catalog/search?`;
   constructor() {}
   postToken(
     password: string,
@@ -53,14 +52,18 @@ export class TreolanService {
         map((response) => response.data)
       );
   }
-  getVendors(token: string): Observable<void> {
+  getVendors(token: string): Observable<Vendor[]> {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     });
-    const params = new HttpParams();
-    params.set('productCategoryId', 70).set('vendorId', 0).set('inName', 0);
-    return this.http.get<void>(this.vendorsUrl, { headers, params });
+    const params = new HttpParams()
+      // .set('productCategoryId', 70)
+      .set('vendorId', 0)
+      .set('inName', 0);
+    return this.http
+      .get<{ data: Vendor[] }>(this.vendorsUrl, { headers, params })
+      .pipe(map((response) => response.data));
   }
   getProducts(token: string, categoryId: number): Observable<void> {
     const headers = new HttpHeaders({

@@ -1,28 +1,34 @@
-<div
-  class="flex content mt-3 mb-3 mr-3 bg-blue-200 grow rounded-xl shadow-md dark:bg-main-surface-400 dark:text-white"
->
-  <div class="w-full flex justify-center">
-    <p-carousel
-      [value]="catArr"
-      [numVisible]="4"
-      [numScroll]="2"
-      [circular]="false"
-      class="w-4/5 overflow-hidden"
+<!-- <div
+    class="max-w-full pl-3 pr-3 flex flex-col content mt-3 mb-3 mr-3 bg-blue-200 rounded-xl shadow-md dark:bg-main-surface-400 dark:text-white sm:"
+    > -->
+@defer () {
+<h2 class="pb-3 pt-3 font-bold text-3xl">Категории товаров</h2>
+<div class="flex items-center">
+  <ul class="grid grid-cols-9 gap-5">
+    @for(category of catArr; track category) {
+    <li
+      class="text-sm flex flex-col justify-center items-center shadow rounded-lg bg-white max-w-full box-border cursor-pointer hover:bg-gray-100 hover:shadow-lg dark:bg-main-surface-500 dark:text-white dark:hover:bg-main-surface-600 sm:w-48 sm:h-52 md:w-52 md:h-56 lg:w-56 lg:h-56 xl:w-56 xl:h-56 2xl:w-40 2xl:h-44"
+      (click)="selectCategory(category.Id)"
     >
-      <ng-template let-category pTemplate="category">
-        <div class="p-3 flex justify-center items-center">
-          <div
-            class="category h-56 w-52 flex flex-col justify-center items-center" (click)="selectCategory(category.Id)"
-          >
-            <div class="flex w-full items-center justify-center">
-              <img [src]="category.CategoryIconLink" alt="" class="w-24" />
-            </div>
-            <h3 class="text-center mt-2">
-              {{ category.Name }}
-            </h3>
-          </div>
-        </div>
-      </ng-template>
-    </p-carousel>
-  </div>
+      @if(category.CategoryIconLink) {
+      <img
+        [src]="category.CategoryIconLink"
+        alt="Category icon"
+        class="lg:w-16 xl:w-20 2xl:w-16"
+      />
+      }
+      <h3 class="p-1 text-center font-xs">
+        {{ category.Name }}
+      </h3>
+    </li>
+    }
+  </ul>
 </div>
+} @placeholder (minimum 2500ms){
+<p-progressSpinner
+  ariaLabel="loading"
+  class="spinner flex items-center justify-center pt-96 text-blue-500"
+  [style]="{ textColor: 'tomato' }"
+  />
+}
+<!-- </div> -->

@@ -6,11 +6,12 @@ import { Token } from './interfaces/Token';
 import { SidebarComponent } from "./sidebar/sidebar.component";
 import { HeaderComponent } from "./header/header.component";
 import { CatalogComponent } from "./catalog/catalog.component";
+import { NavComponent } from './nav/nav.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, SidebarComponent, HeaderComponent, CatalogComponent],
+  imports: [RouterOutlet, SidebarComponent, HeaderComponent, CatalogComponent, NavComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

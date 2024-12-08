@@ -1,6 +1,10 @@
 <app-header></app-header>
+<!-- <app-nav></app-nav> -->
 <div class="flex">
-<app-sidebar class=""></app-sidebar>
-<app-catalog class="grow"></app-catalog>
+  <app-sidebar></app-sidebar>
+  <div
+    class="max-w-full pl-3 pr-3 flex flex-col content mt-3 mb-3 mr-3 bg-blue-200 rounded-xl shadow-md dark:bg-main-surface-400 dark:text-white sm:"
+  >
+    <router-outlet></router-outlet>
+  </div>
 </div>
-<router-outlet></router-outlet>

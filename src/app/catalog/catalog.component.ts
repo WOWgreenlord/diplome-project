@@ -1,14 +1,14 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { TreolanService } from '../services/treolan.service';
 import { Token } from '../interfaces/Token';
 import { Category } from '../interfaces/Category';
-import { CarouselModule } from 'primeng/carousel';
 
 @Component({
   selector: 'app-catalog',
   standalone: true,
-  imports: [CarouselModule],
+  imports: [ProgressSpinnerModule],
   templateUrl: './catalog.component.html',
   styleUrl: './catalog.component.css',
 })
@@ -17,13 +17,13 @@ export class CatalogComponent implements OnInit {
   token: Token | null = null;
   imgLink: string = '';
   catArr: Category[] = [];
-  responsiveOptions: any[] | undefined;
 
   ngOnInit(): void {
     this.treolan.token$.subscribe((token) => {
+      console.log(token);
       this.token = token;
-      this.treolan.getCategories(token.access_token).subscribe((response) => {
-        console.log(response);
+      console.log(this.token);
+      this.treolan.getCategories(token!.access_token).subscribe((response) => {
         if (token) {
           this.loadCategories(token.access_token); // Загружаем категории
         }
@@ -41,7 +41,6 @@ export class CatalogComponent implements OnInit {
       },
     });
   }
-
   selectCategory(categoryId: number): void {
     if (this.token) {
       this.treolan.getProducts(this.token.access_token, categoryId).subscribe({
@@ -57,14 +56,4 @@ export class CatalogComponent implements OnInit {
       console.error('Токен отсутствует!');
     }
   }
-  // loadProducts(token: string): void {
-  //   this.treolan.getProducts(token).subscribe({
-  //     next: (products) => {
-  //       console.log('Продукты:', products);
-  //     },
-  //     error: (err) => {
-  //       console.error('Ошибка при загрузке продуктов:', err);
-  //     }
-  //     })
-  // }
 }

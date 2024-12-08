@@ -11,11 +11,12 @@ import { AuthService } from '../services/auth.service';
 import { RatesService } from '../services/rates.service';
 
 import { ModalComponent } from '../modal/modal.component';
+import { NavComponent } from '../nav/nav.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [ModalComponent, FormsModule],
+  imports: [ModalComponent, NavComponent, FormsModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
@@ -71,7 +72,6 @@ export class HeaderComponent implements OnInit {
     //   this.ratesEUR = +this.ratesEUR.toFixed(2);
     //   console.log(`EUR TO RUB:${data.data.RUB}`)
     // })
-    console.log(this.categoryId);
   }
   darkTheme() {
     this.isDark = !this.isDark;

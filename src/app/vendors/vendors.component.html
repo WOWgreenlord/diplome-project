@@ -1,0 +1,10 @@
+<h2 class="font-bold p-3 text-lg">Вендоры</h2>
+<ul class="grid grid-cols-6 gap-4">
+  @for(vendor of venArr; track vendor) {
+  <li class="border w-56">
+    <h3 class="text-lg font-semibold">
+      {{ vendor.name }}
+    </h3>
+  </li>
+  }
+</ul>
