@@ -1,34 +1,38 @@
 <!-- <div
     class="max-w-full pl-3 pr-3 flex flex-col content mt-3 mb-3 mr-3 bg-blue-200 rounded-xl shadow-md dark:bg-main-surface-400 dark:text-white sm:"
     > -->
-@defer () {
+<!-- @defer () { -->
 <h2 class="pb-3 pt-3 font-bold text-3xl">Категории товаров</h2>
 <div class="flex items-center">
-  <ul class="grid grid-cols-9 gap-5">
+  <ul class="grid grid-cols-9 gap-5 sm:grid-cols-3">
     @for(category of catArr; track category) {
     <li
-      class="text-sm flex flex-col justify-center items-center shadow rounded-lg bg-white max-w-full box-border cursor-pointer hover:bg-gray-100 hover:shadow-lg dark:bg-main-surface-500 dark:text-white dark:hover:bg-main-surface-600 sm:w-48 sm:h-52 md:w-52 md:h-56 lg:w-56 lg:h-56 xl:w-56 xl:h-56 2xl:w-40 2xl:h-44"
+      class="text-sm flex flex-col justify-center items-center shadow rounded-lg bg-white max-w-full box-border cursor-pointer hover:bg-gray-100 hover:shadow-lg dark:bg-main-surface-500 dark:text-white dark:hover:bg-main-surface-600 sm:w-24 sm:h-28"
+      
       (click)="selectCategory(category.Id)"
     >
+    <!-- sm:w-48 sm:h-52 -->
+    <!-- md:w-52 md:h-56 lg:w-56 lg:h-56 xl:w-56 xl:h-56 2xl:w-40 2xl:h-44 -->
       @if(category.CategoryIconLink) {
       <img
         [src]="category.CategoryIconLink"
         alt="Category icon"
-        class="lg:w-16 xl:w-20 2xl:w-16"
+        class="sm:w-10"
       />
+      <!-- lg:w-16 xl:w-20 2xl:w-16 -->
       }
-      <h3 class="p-1 text-center font-xs">
+      <h3 class="p-1 text-center sm:font-xs sm:p-0">
         {{ category.Name }}
       </h3>
     </li>
     }
   </ul>
 </div>
-} @placeholder (minimum 2500ms){
-<p-progressSpinner
+<!-- } @placeholder (minimum 2500ms){ -->
+<!-- <p-progressSpinner
   ariaLabel="loading"
   class="spinner flex items-center justify-center pt-96 text-blue-500"
   [style]="{ textColor: 'tomato' }"
-  />
-}
+  /> -->
+<!-- } -->
 <!-- </div> -->

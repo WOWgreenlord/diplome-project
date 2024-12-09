@@ -1,5 +1,5 @@
 <header
-  class="text-base flex flex-col justify-center bg-blue-200 h-32 gap-3 dark:bg-main-surface-400 dark:text-white md:text-base"
+  class="text-base flex flex-col justify-center bg-blue-200 h-32 gap-3 dark:bg-main-surface-400 dark:text-white sm:text-xs"
 >
   <div class="h-16 flex justify-between px-5 items-center sm:h-12">
     <div class="">
@@ -62,9 +62,9 @@
       }
     </span>
   </div>
-  <nav class="h-14 flex justify-around items-center box-border">
+  <nav class="h-14 flex justify-center items-center box-border">
     <!-- Помощь по интерфейсу -->
-    <span class="relative inline-block">
+    <span class="relative hidden md:inline-block">
       <button
         class="p-3 box-border border rounded-full border-transparent transition-all duration-200 hover:text-white hover:bg-blue-500"
         (click)="toggle()"
@@ -93,19 +93,22 @@
       }
     </span>
 
-    <div class="w-8/12 flex h-10 items-center justify-center sm:gap-3">
+    <div class="flex h-10 items-center justify-center gap-3">
+      <!-- w-8/12 -->
       <!-- gap-8 ^ оттуда -->
-      <p class="pr-4">
-        USD: <span>{{ ratesUSD }}</span>
-      </p>
-      <p class="pr-4">
-        EUR: <span>{{ ratesEUR }}</span>
-      </p>
+       <div class="flex gap-2">
+         <p>
+           USD: <span>{{ ratesUSD }}</span>
+         </p>
+         <p>
+           EUR: <span>{{ ratesEUR }}</span>
+         </p>
+       </div>
       <div class="relative">
         <input
           type="text"
           placeholder="Введите строку для поиска"
-          class="w-32 h-10 rounded-md border-none outline-none pl-3 pr-8 sm:w-48 md:w-80 xl:w-96 sm:h-8 dark:bg-main-surface-300 dark:placeholder:text-white"
+          class="w-32 h-10 rounded-md border-none outline-none pl-3 pr-8 dark:bg-main-surface-300 dark:placeholder:text-white sm:w-80 sm:h-6"
           [(ngModel)]="categoryId"
         />
         <!-- Поиск иконка -->
@@ -115,7 +118,7 @@
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="size-6 absolute right-2 top-2 sm:top-1"
+          class="size-6 absolute right-2 top-2 sm:top-0.5 sm:size-5"
           (click)="getProductsByCategory()"
         >
           <path
@@ -125,11 +128,11 @@
           />
         </svg>
       </div>
-      <div class="flex gap-3 sm:gap-1">
+      <div class="gap-2">
         <span class="pdf relative inline-block">
           <!-- Скачать PDF -->
           <button
-            class="p-3 box-border border rounded-full border-transparent transition-all duration-200 hover:text-white hover:bg-blue-500"
+            class="p-3 box-border border rounded-full border-transparent transition-all duration-200 hover:text-white hover:bg-blue-500 hidden md:inline-block"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -137,7 +140,7 @@
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="size-6"
+              class="size-6 "
             >
               <path
                 stroke-linecap="round"
@@ -156,7 +159,7 @@
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="size-6"
+              class="size-6 sm:size-5"
             >
               <path
                 stroke-linecap="round"
@@ -182,7 +185,7 @@
       </div>
     </div>
     <div class="flex">
-      <span class="flex relative inline-block">
+      <span class="flex relative hidden md:inline-block">
         @if(!isLogged) {
           <button
             class="flex items-center p-2 gap-2 border rounded-full border-transparent transition-all duration-200 hover:text-white hover:bg-blue-500"
