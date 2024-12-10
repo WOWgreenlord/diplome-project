@@ -65,7 +65,7 @@ export class HeaderComponent implements OnInit {
     // this.rates.getRatesUSD().subscribe(data => {
     //   this.ratesUSD = data.data.RUB
     //   this.ratesUSD = +this.ratesUSD.toFixed(2);
-    //   console.log(data.data.RUB)
+    //   console.log(`USD TO RUB:${data.data.RUB}`);
     // })
     // this.rates.getRatesEUR().subscribe(data => {
     //   this.ratesEUR = data.data.RUB

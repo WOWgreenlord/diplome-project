@@ -1,15 +1,15 @@
 <header
-  class="text-base flex flex-col justify-center bg-blue-200 h-32 gap-3 dark:bg-main-surface-400 dark:text-white sm:text-xs"
+  class="shadow-lg flex flex-col justify-center bg-blue-200 h-32 dark:bg-main-surface-400 dark:text-white sm:text-xs md:text-base 2xl:text-lg"
 >
-  <div class="h-16 flex justify-between px-5 items-center sm:h-12">
-    <div class="">
+  <div class="h-14 flex justify-between px-5 items-center">
+    <div>
       <img
         src="https://www.laurenillumination.com/wp-content/uploads/2015/12/distributor-icon.png"
         alt="logo"
-        class="w-12"
+        class="w-12 2xl:w-16"
       />
     </div>
-    <h1 class="text-center sm:w-4/6 md:w-9/12 lg:w-3/4 xl:w-11/12">
+    <h1 class="font-semibold text-center sm:text-xs sm:w-48 md:text-base md:w-96 lg:w-full lg:text-lg">
       Разработка web-приложения для поиска товаров по каналам дистрибуции на
       Angular 18
     </h1>
@@ -27,7 +27,7 @@
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="size-6"
+          class="size-6 sm:size-5 lg:size-6 2xl:size-7"
         >
           <path
             stroke-linecap="round"
@@ -62,9 +62,9 @@
       }
     </span>
   </div>
-  <nav class="h-14 flex justify-center items-center box-border">
+  <nav class="h-14 flex items-center box-border sm:justify-center md:justify-center lg:justify-around">
     <!-- Помощь по интерфейсу -->
-    <span class="relative hidden md:inline-block">
+    <span class="relative hidden lg:inline-block">
       <button
         class="p-3 box-border border rounded-full border-transparent transition-all duration-200 hover:text-white hover:bg-blue-500"
         (click)="toggle()"
@@ -75,7 +75,7 @@
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="size-6"
+          class="size-6 2xl:size-7"
         >
           <path
             stroke-linecap="round"
@@ -93,22 +93,22 @@
       }
     </span>
 
-    <div class="flex h-10 items-center justify-center gap-3">
+    <div class="flex h-10 items-center gap-3">
       <!-- w-8/12 -->
       <!-- gap-8 ^ оттуда -->
-       <div class="flex gap-2">
-         <p>
-           USD: <span>{{ ratesUSD }}</span>
-         </p>
-         <p>
-           EUR: <span>{{ ratesEUR }}</span>
-         </p>
-       </div>
+      <div class="flex gap-3 p-2">
+        <p>
+          USD: <span>{{ ratesUSD }}</span>
+        </p>
+        <p>
+          EUR: <span>{{ ratesEUR }}</span>
+        </p>
+      </div>
       <div class="relative">
         <input
           type="text"
           placeholder="Введите строку для поиска"
-          class="w-32 h-10 rounded-md border-none outline-none pl-3 pr-8 dark:bg-main-surface-300 dark:placeholder:text-white sm:w-80 sm:h-6"
+          class="rounded-md border-none outline-none pl-3 pr-8 dark:bg-main-surface-300 dark:placeholder:text-white sm:w-80 sm:h-6 md:h-8 md:w-96 xl:h-10"
           [(ngModel)]="categoryId"
         />
         <!-- Поиск иконка -->
@@ -118,7 +118,7 @@
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="size-6 absolute right-2 top-2 sm:top-0.5 sm:size-5"
+          class="size-6 absolute right-2 top-2 sm:top-0.5 sm:size-5 md:top-1 lg:size-6 xl:top-1.5 2xl:size-7 2xl:top-1"
           (click)="getProductsByCategory()"
         >
           <path
@@ -128,27 +128,8 @@
           />
         </svg>
       </div>
-      <div class="gap-2">
+      <div>
         <span class="pdf relative inline-block">
-          <!-- Скачать PDF -->
-          <button
-            class="p-3 box-border border rounded-full border-transparent transition-all duration-200 hover:text-white hover:bg-blue-500 hidden md:inline-block"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="size-6 "
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"
-              />
-            </svg>
-          </button>
           <!-- Корзина -->
           <button
             class="p-3 box-border border rounded-full border-transparent transition-all duration-200 hover:text-white hover:bg-blue-500"
@@ -159,12 +140,31 @@
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="size-6 sm:size-5"
+              class="size-6 sm:size-5 lg:size-6 2xl:size-7"
             >
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+              />
+            </svg>
+          </button>
+          <!-- Скачать PDF -->
+          <button
+            class="p-3 box-border border rounded-full border-transparent transition-all duration-200 hover:text-white hover:bg-blue-500 hidden md:inline-block"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6 2xl:size-7"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"
               />
             </svg>
           </button>
@@ -185,52 +185,51 @@
       </div>
     </div>
     <div class="flex">
-      <span class="flex relative hidden md:inline-block">
+      <span class="flex relative hidden lg:inline-block">
         @if(!isLogged) {
-          <button
-            class="flex items-center p-2 gap-2 border rounded-full border-transparent transition-all duration-200 hover:text-white hover:bg-blue-500"
-            (click)="openModal()"
+        <button
+          class="flex items-center p-2 gap-2 border rounded-full border-transparent transition-all duration-200 hover:text-white hover:bg-blue-500"
+          (click)="openModal()"
+        >
+          <p>{{ logIn }}</p>
+          <!-- Аккаунт -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6 2xl:size-7"
           >
-            <p>{{ logIn }}</p>
-            <!-- Аккаунт -->
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="size-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-              />
-            </svg>
-          </button>
-        }
-        @if(isLogged) {
-          <button
-            class="flex items-center p-2 gap-2 border rounded-full border-transparent transition-all duration-200 hover:text-white hover:bg-blue-500"
-            (click)="openModalInfo()"
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+            />
+          </svg>
+        </button>
+        } @if(isLogged) {
+        <button
+          class="flex items-center p-2 gap-2 border rounded-full border-transparent transition-all duration-200 hover:text-white hover:bg-blue-500"
+          (click)="openModalInfo()"
+        >
+          <p>{{ logIn }}</p>
+          <!-- Аккаунт -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
           >
-            <p>{{ logIn }}</p>
-            <!-- Аккаунт -->
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="size-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-              />
-            </svg>
-          </button>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+            />
+          </svg>
+        </button>
         <button
           class="flex items-center p-2 gap-2 border rounded-full border-transparent transition-all duration-200 hover:text-white hover:bg-red-500"
           (click)="logoutClick()"
@@ -239,7 +238,11 @@
           <!-- Аккаунт -->
         </button>
         }
-        <app-modal [isOpen]="isModalOpen" [isOpenInfo]="isModalInfoOpen" (close)="closeModal()"></app-modal>
+        <app-modal
+          [isOpen]="isModalOpen"
+          [isOpenInfo]="isModalInfoOpen"
+          (close)="closeModal()"
+        ></app-modal>
         @if(isToggled) {
         <p
           class="tooltiptext-left flex items-center absolute z-10 w-32 bg-blue-500 text-center rounded-lg h-14 text-white -top-2 -left-36"
