@@ -1,10 +1,38 @@
-<h2 class="font-bold p-3 text-lg">Вендоры</h2>
-<ul class="grid grid-cols-6 gap-4">
-  @for(vendor of venArr; track vendor) {
-  <li class="border w-56">
-    <h3 class="text-lg font-semibold">
-      {{ vendor.name }}
-    </h3>
-  </li>
+<h2 class="font-bold pb-3 sm:text-base lg:text-2xl">Вендоры</h2>
+
+<!-- Ссылки на буквы алфавита -->
+<div class="alphabet-links mb-4">
+  @for(letter of alphabet; track letter) {
+     <a 
+     href="javascript:void(0)" 
+     (click)="scrollToLetter(letter)"
+     class="text-lg font-semibold px-2 py-1 hover:text-blue-500">
+      {{ letter }}
+     </a>
+  }
+</div>
+
+<!-- Список вендоров, сгруппированный по первой букве -->
+<ul>
+  @for(letter of alphabet; track letter) {
+    <ng-container>
+      @if(filteredVendorsByLetter(letter).length > 0) {
+        <li>
+      <!-- Заголовок с буквой -->
+      <h2 class="font-bold text-xl">{{ letter }}</h2>
+
+      <!-- Список вендоров для этой буквы -->
+      <ul class="grid grid-cols-6 gap-2">
+        @for(vendor of filteredVendorsByLetter(letter); track vendor) {
+          <li class="border w-fit">
+          <h3 class="text-base font-semibold">
+            {{ vendor.name }}
+          </h3>
+        </li>
+        }
+      </ul>
+    </li>
+      }
+  </ng-container>
   }
 </ul>
