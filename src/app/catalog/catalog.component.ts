@@ -1,5 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { RouterLink } from '@angular/router';
+
 
 import { TreolanService } from '../services/treolan.service';
 import { Token } from '../interfaces/Token';
@@ -8,7 +10,7 @@ import { Category } from '../interfaces/Category';
 @Component({
   selector: 'app-catalog',
   standalone: true,
-  imports: [ProgressSpinnerModule],
+  imports: [ProgressSpinnerModule, RouterLink],
   templateUrl: './catalog.component.html',
   styleUrl: './catalog.component.css',
 })

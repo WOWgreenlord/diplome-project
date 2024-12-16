@@ -7,12 +7,14 @@ import { CatalogComponent } from './catalog/catalog.component';
 import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { VendorsComponent } from './vendors/vendors.component';
+import { CategoryComponent } from './category/category.component';
 
 
 
 export const routes: Routes = [
-  {path: 'home', component: HomeComponent},
-  {path: 'catalog', component: CatalogComponent},
-  {path: 'vendors', component: VendorsComponent},
-  {path: '**', component: HomeComponent, pathMatch: 'full'},
+  { path: 'home', component: HomeComponent },
+  { path: 'catalog', component: CatalogComponent},
+  { path: 'catalog/:categoryName', component: CategoryComponent},
+  { path: 'vendors', component: VendorsComponent },
+  { path: '**', component: HomeComponent, pathMatch: 'full' },
 ];

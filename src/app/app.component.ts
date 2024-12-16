@@ -5,13 +5,14 @@ import { TreolanService } from './services/treolan.service';
 import { Token } from './interfaces/Token';
 import { SidebarComponent } from "./sidebar/sidebar.component";
 import { HeaderComponent } from "./header/header.component";
-import { CatalogComponent } from "./catalog/catalog.component";
-import { NavComponent } from './nav/nav.component';
+import { CategoryComponent } from './category/category.component';
+// import { CatalogComponent } from "./catalog/catalog.component";
+// import { NavComponent } from './nav/nav.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, SidebarComponent, HeaderComponent, CatalogComponent, NavComponent],
+  imports: [RouterOutlet, SidebarComponent, HeaderComponent, CategoryComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
