@@ -1,11 +1,12 @@
-<!-- @defer () { -->
 <h2 class="pb-3 font-bold sm:text-base lg:text-2xl">Категории товаров</h2>
+@defer () {
 <div class="flex items-center">
   <ul class="grid grid-cols-9 w-full sm:grid-cols-1 sm:gap-2 lg:grid-cols-5 lg:gap-6 lg:w-fit xl:grid-cols-6 2xl:grid-cols-7 2xl:gap-5">
     @for(category of catArr; track category) {
     <a
-    [routerLink]="['/catalog', category.Name]"  
+    [routerLink]="['/catalog', category.Name, category.Id]"  
     class="text-sm flex items-center shadow rounded-lg bg-white box-border cursor-pointer hover:bg-gray-100 hover:shadow-lg dark:bg-main-surface-500 dark:text-white dark:hover:bg-main-surface-600 sm:h-10 sm:flex-row sm:justify-start sm:gap-2 sm:p-2 md:text-base lg:flex-col lg:justify-center lg:h-40 xl:h-44 "
+    (click)="selectCategory(category.Id)"
       
     
     >
@@ -24,11 +25,10 @@
     }
   </ul>
 </div>
-<!-- <router-outlet></router-outlet> -->
-<!-- } @placeholder (minimum 2500ms){
+} @placeholder (minimum 2500ms){
 <p-progressSpinner
   ariaLabel="loading"
   class="flex items-center justify-center text-blue-500"
   [style]="{ textColor: 'tomato' }"
   />
-} -->
+}

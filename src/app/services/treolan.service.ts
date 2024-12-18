@@ -5,6 +5,7 @@ import { BehaviorSubject, map, Observable, Subject, tap } from 'rxjs';
 import { Token } from '../interfaces/Token';
 import { Category } from '../interfaces/Category';
 import { Vendor } from '../interfaces/Vendor';
+import { Product } from '../interfaces/Product';
 
 @Injectable({
   providedIn: 'root',
@@ -37,7 +38,10 @@ export class TreolanService {
 
     return this.http.post<Token>(this.tokenUrl, body.toString()).pipe(
       // Передаем токен в Subject после получения.
-      tap((token) => this.tokenSubject.next(token))
+      tap((token) => {
+        localStorage.setItem('access_token', token.access_token);
+        this.tokenSubject.next(token);
+      })  
     );
   }
   getCategories(token: string): Observable<Category[]> {
@@ -65,7 +69,7 @@ export class TreolanService {
       .get<{ data: Vendor[] }>(this.vendorsUrl, { headers, params })
       .pipe(map((response) => response.data));
   }
-  getProducts(token: string, categoryId: number): Observable<void> {
+  getProducts(token: string, categoryId: number): Observable<any> {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
@@ -73,6 +77,9 @@ export class TreolanService {
     const params = new HttpParams()
       .set('categoryId', categoryId)
       .set('pageSize', 10);
-    return this.http.get<void>(this.catalogSearchUrl, { headers, params });
+    return this.http.get<{ data: Product[] }>(this.catalogSearchUrl, {
+      headers,
+      params,
+    }).pipe(map(response => response.data));
   }
 }

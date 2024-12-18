@@ -14,7 +14,8 @@ import { CategoryComponent } from './category/category.component';
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'catalog', component: CatalogComponent},
-  { path: 'catalog/:categoryName', component: CategoryComponent},
+  { path: 'catalog/:categoryName/:categoryId', component: CategoryComponent},
   { path: 'vendors', component: VendorsComponent },
+  { path: 'register', component: RegisterComponent },
   { path: '**', component: HomeComponent, pathMatch: 'full' },
 ];
