@@ -2,7 +2,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { RouterLink } from '@angular/router';
 
-
 import { TreolanService } from '../services/treolan.service';
 import { Token } from '../interfaces/Token';
 import { Category } from '../interfaces/Category';
@@ -17,14 +16,13 @@ import { Category } from '../interfaces/Category';
 export class CatalogComponent implements OnInit {
   treolan = inject(TreolanService);
   token: Token | null = null;
-  imgLink: string = '';
-  catArr: Category[] = [];
+  categories: Category[] = [];
 
   ngOnInit(): void {
     this.treolan.token$.subscribe((token) => {
-      console.log(token);
+      // console.log(token);
       this.token = token;
-      console.log(this.token);
+      // console.log(this.token);
       this.treolan.getCategories(token!.access_token).subscribe((response) => {
         if (token) {
           this.loadCategories(token.access_token); // Загружаем категории
@@ -32,11 +30,12 @@ export class CatalogComponent implements OnInit {
       });
     });
   }
+
   private loadCategories(token: string): void {
     this.treolan.getCategories(token).subscribe({
       next: (categories) => {
-        this.catArr = categories; // Сохраняем категории в массив
-        console.log('Категории:', this.catArr);
+        this.categories = categories; // Сохраняем категории в массив
+        console.log('Категории:', this.categories);
       },
       error: (err) => {
         console.error('Ошибка при загрузке категорий:', err);
@@ -59,3 +58,4 @@ export class CatalogComponent implements OnInit {
     }
   }
 }
+

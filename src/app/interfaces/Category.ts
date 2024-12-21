@@ -5,9 +5,3 @@ export interface Category {
     HasChild: boolean;
     CategoryIconLink: string;
 }
-
-// export interface CategoryResponse {
-//   data: Category[],
-//   count: number,
-//   status: number,
-// }

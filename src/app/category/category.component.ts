@@ -20,36 +20,25 @@ export class CategoryComponent implements OnInit {
   treolan = inject(TreolanService);
   route = inject(ActivatedRoute);
   products: any[] = [];
+  // laptopsID: string = '29446';
+  // parenId: string = '27512';
   ngOnInit(): void {
     this.categoryName = this.route.snapshot.paramMap.get('categoryName');
     this.categoryId = +this.route.snapshot.paramMap.get('categoryId')!;
-    
 
-    if (this.categoryId) {
-      this.loadProducts();
-    }
+    // if (this.categoryId) {
+    //   this.loadProducts();
+    // }
   }
-  private loadProducts(): void {
-    const token = localStorage.getItem('access_token'); // Получаем токен из localStorage или другого места хранения
-    console.log(token); // from localStorage
-
-    // Если токен существует и categoryId задан, делаем запрос
-    if (token && this.categoryId) {
-      this.treolan.getProducts(token, this.categoryId).subscribe({
-        next: (response) => {
-          this.products = response.products; // Сохраняем товары в массив
-          // console.log('Товары для категории:', this.categoryId, products);
-      console.log(this.products);
-
-        },
-        error: (err) => {
-          console.error('Ошибка при загрузке товаров:', err);
-        },
-      });
-    } else {
-      console.error('Токен не найден или categoryId не задан!');
-    }
+  // private loadProducts(): void {
+  //   this.treolan.getProductsByCategory(this.laptopsID, this.parenId, this.categoryName!).subscribe({
+  //     next: (products) => {
+  //       this.products = products; // Сохраняем полученные товары
+  //       console.log('Товары категории:', this.products);
+  //     },
+  //     error: (err) => {
+  //       console.error('Ошибка при загрузке товаров:', err);
+  //     },
+  //   });
+  // }
   }
-}
-
-

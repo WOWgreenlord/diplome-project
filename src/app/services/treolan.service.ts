@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable, Subject, tap } from 'rxjs';
+import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 
 import { Token } from '../interfaces/Token';
 import { Category } from '../interfaces/Category';
@@ -41,7 +41,7 @@ export class TreolanService {
       tap((token) => {
         localStorage.setItem('access_token', token.access_token);
         this.tokenSubject.next(token);
-      })  
+      })
     );
   }
   getCategories(token: string): Observable<Category[]> {
@@ -50,7 +50,7 @@ export class TreolanService {
       'Content-Type': 'application/json',
     });
     return this.http
-      .get<{ data: Category[] }>(this.categoriesUrl, { headers })
+      .get<{data: Category[]}>(this.categoriesUrl, { headers })
       .pipe(
         // Извлекаем массив категорий из свойства `data`
         map((response) => response.data)
@@ -77,9 +77,11 @@ export class TreolanService {
     const params = new HttpParams()
       .set('categoryId', categoryId)
       .set('pageSize', 10);
-    return this.http.get<{ data: Product[] }>(this.catalogSearchUrl, {
-      headers,
-      params,
-    }).pipe(map(response => response.data));
+    return this.http
+      .get<{ data: Product[] }>(this.catalogSearchUrl, {
+        headers,
+        params,
+      })
+      .pipe(map((response) => response.data));
   }
 }

@@ -5,14 +5,13 @@ import { TreolanService } from './services/treolan.service';
 import { Token } from './interfaces/Token';
 import { SidebarComponent } from "./sidebar/sidebar.component";
 import { HeaderComponent } from "./header/header.component";
-import { CategoryComponent } from './category/category.component';
+// import { CategoryComponent } from './category/category.component';
 // import { CatalogComponent } from "./catalog/catalog.component";
-// import { NavComponent } from './nav/nav.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, SidebarComponent, HeaderComponent, CategoryComponent],
+  imports: [RouterOutlet, SidebarComponent, HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
@@ -25,7 +24,7 @@ export class AppComponent implements OnInit {
     this.treolan
       .postToken('t!bRt!0;', '559f956e4aaf', 'antex_api', 'ru.treolan.apps.35')
       .subscribe((token: Token) => {
-        console.log('Token:', token.access_token);
+        console.log('Token:', token);
       });
   }
 }

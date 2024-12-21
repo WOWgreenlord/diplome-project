@@ -11,12 +11,11 @@ import { AuthService } from '../services/auth.service';
 import { RatesService } from '../services/rates.service';
 
 import { ModalComponent } from '../modal/modal.component';
-import { NavComponent } from '../nav/nav.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [ModalComponent, NavComponent, FormsModule],
+  imports: [ModalComponent, FormsModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
@@ -119,15 +118,5 @@ export class HeaderComponent implements OnInit {
   logoutClick() {
     this.auth.logOut();
     console.log('vihod header');
-  }
-  // getProduct() {
-  //   this.treolan.getProducts(this.token!.access_token).subscribe(response => {
-  //     console.log(response)
-  //   })
-  // }
-  getProductsByCategory() {
-    this.treolan.getProducts(this.token!.access_token, this.categoryId).subscribe(response => {
-      console.log(response);
-    })
   }
 }
