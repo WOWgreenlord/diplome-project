@@ -9,7 +9,7 @@ import { User } from '../interfaces/User';
 })
 export class DatabaseService {
   http = inject(HttpClient);
-  dbUrl: string = 'http://localhost:3000/users';
+  dbUrl: string = 'http://localhost:5000/users';
   jsonDbUrl: string = 'https://jsonplaceholder.typicode.com/users';
   constructor() {}
   getData(): Observable<User[]> {

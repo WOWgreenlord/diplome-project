@@ -1,4 +1,5 @@
 export interface Vendor {
   id: number,
-  name: string
+  name: string,
+  WebAddress?: string
 }

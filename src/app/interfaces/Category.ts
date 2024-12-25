@@ -1,7 +1,8 @@
 export interface Category {
-    Id: number;
-    Name: string;
-    ParenId: number;
-    HasChild: boolean;
-    CategoryIconLink: string;
+  id: string;
+  name: string;
+  parentId: string;
+  sortIndex: number;
+  children?: Category[];
+  isExpanded?: boolean;
 }

@@ -2,7 +2,6 @@ import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 
-import { Token } from '../interfaces/Token';
 import { User } from '../interfaces/User';
 
 import { TreolanService } from '../services/treolan.service';
@@ -25,12 +24,12 @@ export class HeaderComponent implements OnInit {
   auth = inject(AuthService);
   rates = inject(RatesService);
   destroyRef = inject(DestroyRef);
-  token: Token | null = null;
   isDark: boolean = false;
   isModalOpen: boolean = false;
   isModalInfoOpen: boolean = false;
   isToggled: boolean = false;
   isLogged: boolean = false;
+  isHovered: boolean = false;
   DarkTheme: string = 'Темную тему';
   logIn: string = 'Выполните вход';
   ratesEUR: number = 0;
@@ -46,14 +45,10 @@ export class HeaderComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.treolan.token$.subscribe((token) => {
-      this.token = token;
-      // console.log('Token from header component:', token.access_token)
-    });
-    this.database.getAllUsers().subscribe((response) => {
-      // console.log(response); Получение всех пользователей
-      this.users = response;
-    });
+    // this.database.getAllUsers().subscribe((response) => {
+    //   // console.log(response); Получение всех пользователей
+    //   this.users = response;
+    // });
     this.auth.isLogged$
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((value) => {

@@ -25,6 +25,7 @@
     "request": "^2.88.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "xml2js": "^0.6.2",
     "zone.js": "~0.14.10"
   },
   "devDependencies": {
@@ -32,6 +33,7 @@
     "@angular/cli": "^18.2.5",
     "@angular/compiler-cli": "^18.2.0",
     "@types/jasmine": "~5.1.0",
+    "@types/xml2js": "^0.4.14",
     "autoprefixer": "^10.4.20",
     "jasmine-core": "~5.2.0",
     "karma": "~6.4.0",
