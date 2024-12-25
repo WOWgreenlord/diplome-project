@@ -1,0 +1,25 @@
+  <!-- Кнопка с названием и стрелкой -->
+   <div class="rounded-md bg-blue-200 shadow-md">
+    <button class="flex w-full gap-2 justify-between items-center p-3 rounded-md bg-blue-200 dark:bg-main-surface-400 dark:text-white hover:text-white hover:bg-blue-500 dark:hover:bg-blue-500" (click)="toggleList()">
+    <h2 class="title font-bold">{{childTitle}}</h2>
+    <svg [ngClass]="{ 'rotate-180': isExpanded }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="transition-transform duration-500 size-6">
+    <path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd" />
+    </svg>
+  </button>
+
+  <!-- Список, который раскрывается при нажатии -->
+   <!-- @if(isExpanded) { -->
+    <ul
+    [class.max-h-0]="!isExpanded"
+    [class.max-h-screen]="isExpanded"
+    [class.opacity-0]="!isExpanded"
+    [class.opacity-100]="isExpanded"
+    [style.border-top]="isExpanded ? '1px solid black' : 'none'"
+    class="overflow-hidden transition-all duration-500 ease-out"> 
+      @for(category of catalCategories; track $index) {
+        <li class="text-sm" (click)="toggleChildren(category)">{{category.name}}</li>
+      }
+    </ul>
+   <!-- } -->
+   </div>
+  
