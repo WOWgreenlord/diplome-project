@@ -5,4 +5,7 @@ export interface Category {
   sortIndex: number;
   children?: Category[];
   isExpanded?: boolean;
+  // ?
 }
+
+

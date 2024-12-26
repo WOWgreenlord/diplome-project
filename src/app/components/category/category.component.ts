@@ -35,7 +35,7 @@ export class CategoryComponent implements OnInit {
 
   initializeExpandedState(categories: Category[]): void {
     categories.forEach((category) => {
-      category.isExpanded = false; // По умолчанию все категории свернуты
+      // category.isExpanded = false; // По умолчанию все категории свернуты
       if (category.children && category.children.length > 0) {
         this.initializeExpandedState(category.children); // Рекурсивно для дочерних категорий
       }
@@ -43,7 +43,7 @@ export class CategoryComponent implements OnInit {
   }
 
   // Метод для переключения состояния раскрытия категории
-  toggleChildren(category: Category): void {
-    category.isExpanded = !category.isExpanded;
-  }
+  // toggleChildren(category: Category): void {
+  //   category.isExpanded = !category.isExpanded;
+  // }
 }

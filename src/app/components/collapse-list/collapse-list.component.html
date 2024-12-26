@@ -17,8 +17,77 @@
     [style.border-top]="isExpanded ? '1px solid black' : 'none'"
     class="overflow-hidden transition-all duration-500 ease-out"> 
       @for(category of catalCategories; track $index) {
-        <li class="text-sm" (click)="toggleChildren(category)">{{category.name}}</li>
+        <li>
+
+        
+        <div
+        class="flex justify-between items-center"
+        (click)="toggleCategory(category)"
+      >
+        <span class="text-sm">{{ category.name }}</span>
+        @if(category.children && category.children.length > 0) {
+          <svg
+          [ngClass]="{ 'rotate-180': category.isExpanded }"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="transition-transform duration-500 size-6"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
+            clip-rule="evenodd"
+          />
+        </svg>
+        }
+      </div>
+      @if(category.isExpanded && category.children) {
+        <ul>
+          @for(subcategory of category.children; track $index) {
+          <li>
+            <button (click)="toggleCategory(subcategory)">
+              {{subcategory.name}}
+              <svg
+                  [ngClass]="{ 'rotate-180': subcategory.isExpanded }"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="transition-transform duration-500 size-6"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+            </button>
+            @if(subcategory.isExpanded && subcategory.children) {
+              <ul>
+                @for(subSubcategory of subcategory.children; track $index) {
+                  <li>
+                    <button>{{subSubcategory.name}}</button>
+                  </li>
+                }
+              </ul>
+            }
+          </li>
+        }
+        </ul>
       }
+        <!-- @if(category.children && category.isExpanded) {
+          <app-collapse-list
+        [childTitle]="category.name"
+        [catalCategories]="category.children"
+      ></app-collapse-list>             -->
+        }
+        <!-- </li> -->
+        <!-- @if(category.children!.length > 0) {
+          <p>{{category.children}}</p>
+        } -->
+        <!-- @if((category.children ?? []).length > 0 && category.isExpanded) {
+        <app-category [categories]="category.children ?? []"></app-category>
+      } -->
+      <!-- } -->
     </ul>
    <!-- } -->
    </div>

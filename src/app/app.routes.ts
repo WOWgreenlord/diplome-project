@@ -1,13 +1,10 @@
 import { Routes } from '@angular/router';
 
 
-import { RegisterComponent } from './register/register.component';
-import { ModalComponent } from './modal/modal.component';
-// import { CatalogComponent } from './catalog/catalog.component';
-import { HomeComponent } from './home/home.component';
-import { VendorsComponent } from './vendors/vendors.component';
-import { CategoryComponent } from './category/category.component';
-
+import { ModalComponent } from './components/modal/modal.component';
+import { HomeComponent } from './components/home/home.component';
+import { VendorsComponent } from './components/vendors/vendors.component';
+import { CategoryComponent } from './components/category/category.component';
 
 
 export const routes: Routes = [
@@ -16,6 +13,5 @@ export const routes: Routes = [
   // { path: 'catalog/:categoryName/:categoryId', component: CategoryComponent},
   { path: 'category', component: CategoryComponent },
   { path: 'vendors', component: VendorsComponent },
-  { path: 'register', component: RegisterComponent },
   { path: '**', component: HomeComponent, pathMatch: 'full' },
 ];
