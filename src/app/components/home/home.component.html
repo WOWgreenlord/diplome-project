@@ -1,2 +1,31 @@
 <p>Hello!</p>
 <p>from se4en</p>
+
+<h1>Information</h1>
+<button (click)="getProductInfo()">Info about product</button>
+
+@if(products) {
+  <h2>Results</h2>
+  <pre>{{products}}</pre>
+}
+<br>
+<h1>Catalog</h1>
+<button (click)="getCatalog()">Get Catalog</button>
+@if(catalog) {
+  <h2>Results:</h2>
+  <pre>{{catalog}}</pre>
+}
+
+<h2>Выбранные категории:</h2>
+<ul>
+  @for(category of selectedCategories; track $index) {
+    <li>{{ category.name }}</li>
+  }
+</ul>
+
+<h2>Товары:</h2>
+@if(products) {
+  <pre >{{ products }}</pre>
+}
+
+
