@@ -1,40 +1,41 @@
 export interface Product {
-  articul: string;
-  shortDesc: string;
-  rusDesc: string;
-  weightBrutto: number;
-  dimensions: {
-    length: number;
-    height: number;
-    width: number;
-  };
-  propertyGroups: PropertyGroup[];
-  vendorWebAddresses: string[];
-  pictureLinks: PictureLink[];
+  Availability: string,
+  DataSheetUrl: string,
+  Description: string,
+  FactoryStock: string,
+  ImagePath: string,
+  Category: string,
+  LeadTime: string,
+  LifecycleStatus: string,
+  Manufacturer: string,
+  ManufacturerPartNumber: string,
+  Min: string,
+  Mult: string,
+  MouserPartNumber: string,
+  ProductAttributes: ProductAttribute[],
+  PriceBreaks: PriceBreak[],
+  AlternatePackagings?: null,
+  ProductDetailUrl: string,
+  Reeling: boolean,
+  ROHSStatus: string,
+  SuggestedReplacement: string,
+  MultiSimBlue: number,
+  AvailabilityInStock: string,
+  AvailabilityOnOrder: any[],
+  InfoMessages: any[],
+  SurchargeMessages: null,
+  ProductCompliance: ProductCompliance[]
 }
-
-export interface PropertyGroup {
-  id: string;
-  name: string;
-  level: number;
-  sort: number;
-  properties: Property[];
+export interface ProductCompliance {
+  CompilanceName: string,
+  CompilanceValue: string
 }
-
-export interface Property {
-  id: string;
-  name: string;
-  value: string;
-  description: string;
-  valueType: string;
-  level: number;
-  sort: number;
+export interface ProductAttribute {
+  AttributeName: string,
+  AttributeValue: string
 }
-
-export interface PictureLink {
-  link: string;
-  imageSize: string;
-  imageType: string;
-  isOldImage: boolean;
-  main: boolean;
+export interface PriceBreak {
+  Quantity: number,
+  Price: string,
+  Currency: string
 }

@@ -10,8 +10,7 @@
       />
     </div>
     <h1 class="font-semibold text-center sm:text-xs sm:w-48 md:text-base md:w-96 lg:w-full lg:text-lg">
-      Разработка web-приложения для поиска товаров по каналам дистрибуции на
-      Angular 18
+      Разработка web-приложения для поиска и покупки электродеталей на Angular 18
     </h1>
     <!-- <button (click)="addUser()">Add User</button> -->
     <!-- Dark Theme кнопка -->
@@ -94,8 +93,6 @@
     </span>
 
     <div class="flex h-10 items-center gap-3">
-      <!-- w-8/12 -->
-      <!-- gap-8 ^ оттуда -->
       <div class="flex gap-3 p-2">
         <p>
           USD: <span>{{ ratesUSD }}</span>
@@ -109,25 +106,25 @@
           type="text"
           placeholder="Введите строку для поиска"
           class="rounded-md border-none outline-none pl-3 pr-8 dark:bg-main-surface-300 dark:placeholder:text-white sm:w-80 sm:h-6 md:h-8 md:w-96 xl:h-10"
-          [(ngModel)]="categoryId"
+          [(ngModel)]="keywords"
         />
         <!-- Поиск иконка -->
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="size-6 absolute right-2 top-2 sm:top-0.5 sm:size-5 md:top-1 lg:size-6 xl:top-1.5 2xl:size-7 2xl:top-1"
-        >
-          <!-- (click)="getProductsByCategory()" -->
-
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-          />
-        </svg>
+         <button (click)="searchByKeywords()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6 absolute right-2 top-2 sm:top-0.5 sm:size-5 md:top-1 lg:size-6 xl:top-1.5 2xl:size-7 2xl:top-1"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+            />
+          </svg>
+         </button>
       </div>
       <div>
         <span class="pdf relative inline-block">

@@ -4,12 +4,13 @@ import { FormsModule } from '@angular/forms';
 
 import { User } from '../../interfaces/User';
 
-import { TreolanService } from '../../services/treolan.service';
 import { DatabaseService } from '../../services/database.service';
 import { AuthService } from '../../services/auth.service';
 import { RatesService } from '../../services/rates.service';
 
 import { ModalComponent } from '../modal/modal.component';
+import { MouserService } from '../../services/mouser.service';
+import { Product } from '../../interfaces/Product';
 
 @Component({
   selector: 'app-header',
@@ -19,7 +20,7 @@ import { ModalComponent } from '../modal/modal.component';
   styleUrl: './header.component.css',
 })
 export class HeaderComponent implements OnInit {
-  treolan = inject(TreolanService);
+  mouser = inject(MouserService);
   database = inject(DatabaseService);
   auth = inject(AuthService);
   rates = inject(RatesService);
@@ -32,10 +33,10 @@ export class HeaderComponent implements OnInit {
   isHovered: boolean = false;
   DarkTheme: string = 'Темную тему';
   logIn: string = 'Выполните вход';
+  keywords: string = '';
   ratesEUR: number = 0;
   ratesUSD: number = 0;
   users: User[] = [];
-  categoryId: number = 0;
   newUser = {
     name: 'Ivan Ivanov',
     username: 'Vano',
@@ -43,7 +44,16 @@ export class HeaderComponent implements OnInit {
     password: '123',
   };
   constructor() {}
-
+  productList?: Product[];
+  
+  searchByKeywords() {
+    this.mouser.postProducts(this.keywords).subscribe((products) => {
+      // console.log(products);
+      this.productList = products.SearchResults.Parts
+      console.log(this.productList);
+      this.mouser.setProductData(this.productList);
+    })
+  }
   ngOnInit(): void {
     // this.database.getAllUsers().subscribe((response) => {
     //   // console.log(response); Получение всех пользователей
@@ -114,4 +124,5 @@ export class HeaderComponent implements OnInit {
     this.auth.logOut();
     console.log('vihod header');
   }
-}
+  }
+

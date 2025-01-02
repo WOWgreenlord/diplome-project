@@ -1,10 +1,9 @@
 <nav class="top-32">
-  
-  <div class="container flex flex-col gap-3 p-3 sm:w-32 sm:text-center sm:text-xs md:w-96 md:text-base lg:text-left xl:text-lg">
-    <button
-      class="p-3 rounded-md bg-blue-200 shadow-md dark:bg-main-surface-400 dark:text-white hover:text-white hover:bg-blue-500 dark:hover:bg-blue-500"
-      >Главная</button>
-    <app-collapse-list [childTitle]="categoriesTitle" [catalCategories]="categories"></app-collapse-list>
-    <app-collapse-list [childTitle]="vendorsTitle" [listItems]="vendors"></app-collapse-list>
+  <div class="container flex flex-col gap-3 p-3 sm:w-32 sm:text-center sm:text-xs md:w-64 md:text-base lg:text-left xl:text-lg">
+    <a
+      routerLink="/"
+      class="p-3 rounded-xl bg-blue-200 shadow-md dark:bg-main-surface-400 dark:text-white hover:text-white hover:bg-blue-500 dark:hover:bg-blue-500"
+      >Главная</a>
+      <a routerLink="/manufacturers" class="p-3 rounded-xl bg-blue-200 shadow-md dark:bg-main-surface-400 dark:text-white hover:text-white hover:bg-blue-500 dark:hover:bg-blue-500">Производители</a>
   </div>
 </nav>

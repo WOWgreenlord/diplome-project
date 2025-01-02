@@ -1,31 +1,45 @@
-<p>Hello!</p>
-<p>from se4en</p>
+<p class="text-center">Приложение предоставляет более 8 миллионов товаров от разных производителей и разного назначения!</p>
+<p>Наше приложение сотрудничает с более 800 производителями</p>
+<p>Это лишь малая часть производителей:</p>
 
-<h1>Information</h1>
-<button (click)="getProductInfo()">Info about product</button>
+ <div class="card">
+    <p-carousel 
+        [value]="logos" 
+        [numVisible]="4" 
+        [numScroll]="2" 
+        [circular]="true" 
+        [responsiveOptions]="responsiveOptions">
+            <ng-template let-img pTemplate="item">
+                <div class="flex justify-center">
+                    <div class="">
+                        <div class="h-52 flex items-center">
+                            <img 
+                                [src]="img.Link" 
+                                class="w-40 border-round" />
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+    </p-carousel>
+</div>
 
-@if(products) {
-  <h2>Results</h2>
-  <pre>{{products}}</pre>
-}
-<br>
-<h1>Catalog</h1>
-<button (click)="getCatalog()">Get Catalog</button>
-@if(catalog) {
-  <h2>Results:</h2>
-  <pre>{{catalog}}</pre>
-}
 
-<h2>Выбранные категории:</h2>
-<ul>
-  @for(category of selectedCategories; track $index) {
-    <li>{{ category.name }}</li>
-  }
-</ul>
+<!-- @for(img of imgs; track $index) { -->
+  <!-- <img src="{{img.src}}" alt=""> -->
+<!-- } -->
 
-<h2>Товары:</h2>
-@if(products) {
-  <pre >{{ products }}</pre>
-}
+
+
+
+
+
+<!-- @for(product of productData; track $index) {
+  <h1>{{product.MouserPartNumber}}</h1>
+  <img src="{{product.ImagePath}}" alt="">
+  <p>{{product.Description}}</p>
+} -->
+
+
+    
 
 
