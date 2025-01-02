@@ -37,10 +37,6 @@ export class HomeComponent {
     this.mouser.productData$.subscribe((data) => {
       this.productData = data;
     });
-    this.mouser.getManufacturers().subscribe((data) => {
-      console.log(data);
-    });
-    console.log(this.logos);
     this.responsiveOptions = [
       {
         breakpoint: '1400px',

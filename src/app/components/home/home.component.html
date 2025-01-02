@@ -1,27 +1,46 @@
-<p class="text-center">Приложение предоставляет более 8 миллионов товаров от разных производителей и разного назначения!</p>
-<p>Наше приложение сотрудничает с более 800 производителями</p>
-<p>Это лишь малая часть производителей:</p>
+<main class="sm:text-xs md:text-base 2xl:text-lg">
+<div class="wrapper flex gap-24 sm:gap-5 lg:gap-16">
+    <div class="sm:w-11/12 md: 2xl:w-3/5 lg:w-3/5 flex flex-col gap-5">
+        <p class="sm:text-xs md:text-base 2xl:text-lg lg:text-lg">Наше приложение является новым на рынке электроники, но насчитывает уже более 8 миллионов товаров и 800 различных дистрибьюторов. Мы поставляем электронные компоненты, радиодетали, комплектующее для бытовой электроники и многое другое
+
+    </p>
+    <p class="sm:text-xs md:text-base 2xl:text-lg">
+        Ошбирный, регулярно пополняемый, каталог включает в себя огромное количество товаров. От транзисторов и диодов, до сложных микросхем разработки.
+    </p>
+    <p class="sm:text-xs md:text-base 2xl:text-lg">
+        Начните использовать наше приложение прямо сейчас! Просто воспользуйтесь поиском и найдите нужные для вас товары.
+    </p>
+    </div>
+    <img src="background/Home-Background.png" alt="Electronic components image" class="sm:w-2/5 md: lg:w-80">
+</div>
+
+<h2 class="sm:text-base font-semibold lg:text-2xl">Дистрибуция</h2>
 
  <div class="card">
     <p-carousel 
         [value]="logos" 
-        [numVisible]="4" 
-        [numScroll]="2" 
+        [numVisible]="5" 
+        [numScroll]="1" 
         [circular]="true" 
-        [responsiveOptions]="responsiveOptions">
+        [responsiveOptions]="responsiveOptions"
+        autoplayInterval="5000">
             <ng-template let-img pTemplate="item">
                 <div class="flex justify-center">
                     <div class="">
-                        <div class="h-52 flex items-center">
-                            <img 
+                        <div class="sm:h-40 lg:h-52 flex items-center">
+                            <div class="dark:bg-main-surface-200 bg-white h-40 flex items-center rounded-xl">
+                                <img 
                                 [src]="img.Link" 
                                 class="w-40 border-round" />
+                            </div>
                         </div>
                     </div>
                 </div>
             </ng-template>
     </p-carousel>
 </div>
+</main>
+
 
 
 <!-- @for(img of imgs; track $index) { -->
