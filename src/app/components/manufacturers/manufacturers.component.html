@@ -1,4 +1,15 @@
-<p>manufacturers works!</p>
-<!-- @for(manufacturer of manufacturers; track $index) {
-  <h1>{{manufacturer.ManufacturerName}}</h1>
-} -->
+<h1 class="text-xl font-bold mb-2">Полный список дистрибьюторов</h1>
+@defer {
+  <div class="grid grid-cols-6 gap-4">
+    @for(manufacturer of manufacturers; track $index) {
+      <a [href]="manufacturer.ManufacturerLink || '#'" target="_blank" class="p-2 border rounded-xl bg-white items-center flex justify-center text-center">
+      {{manufacturer.ManufacturerName}}
+    </a>
+}
+</div>
+} @placeholder(minimum 1s) {
+  <div class="card flex justify-center items-center">
+    <p-progressSpinner ariaLabel="loading" />
+  </div>
+}
+

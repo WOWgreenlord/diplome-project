@@ -1,16 +1,18 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { User } from '../../interfaces/User';
+import { Product } from '../../interfaces/Product';
 
 import { DatabaseService } from '../../services/database.service';
 import { AuthService } from '../../services/auth.service';
 import { RatesService } from '../../services/rates.service';
+import { FavoritesService } from '../../services/favorites.service';
+import { MouserService } from '../../services/mouser.service';
 
 import { ModalComponent } from '../modal/modal.component';
-import { MouserService } from '../../services/mouser.service';
-import { Product } from '../../interfaces/Product';
 
 @Component({
   selector: 'app-header',
@@ -25,6 +27,8 @@ export class HeaderComponent implements OnInit {
   auth = inject(AuthService);
   rates = inject(RatesService);
   destroyRef = inject(DestroyRef);
+  router = inject(Router);
+  favorites = inject(FavoritesService);
   isDark: boolean = false;
   isModalOpen: boolean = false;
   isModalInfoOpen: boolean = false;
@@ -52,9 +56,15 @@ export class HeaderComponent implements OnInit {
       this.productList = products.SearchResults.Parts
       console.log(this.productList);
       this.mouser.setProductData(this.productList);
+      this.router.navigate(['catalog']);
     })
   }
+  test: Product[] = [];
   ngOnInit(): void {
+    this.favorites.favorites$.subscribe((data) => {
+      console.log(data)
+      this.test = data;
+    })
     // this.database.getAllUsers().subscribe((response) => {
     //   // console.log(response); Получение всех пользователей
     //   this.users = response;
@@ -124,5 +134,8 @@ export class HeaderComponent implements OnInit {
     this.auth.logOut();
     console.log('vihod header');
   }
+  routeToFavorites() {
+    this.router.navigate(['/favorites'])
   }
+}
 

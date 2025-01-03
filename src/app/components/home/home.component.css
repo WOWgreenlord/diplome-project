@@ -2,9 +2,6 @@
   height: calc(100vh - 8rem - 26px);
   width: 1620px;
 } */
- .main-back{
-height: 370px;
-}
 :host ::ng-deep .p-carousel {
   /* width: 1000px; */
   height: 200px;
@@ -12,6 +9,7 @@ height: 370px;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 0;
 }
 :host ::ng-deep .p-carousel-prev:hover, :host ::ng-deep .p-carousel-next:hover {
   background-color: #007ad9; /* Цвет фона */

@@ -1,3 +1,7 @@
 export interface Manufacturer {
-  ManufacturerName: string
+  ManufacturerName: string;
+  ManufacturerLink?: string;
 }
+// export interface Link {
+//   src: string;
+// }

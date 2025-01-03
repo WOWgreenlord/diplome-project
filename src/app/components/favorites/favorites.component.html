@@ -1,0 +1,9 @@
+@if(favorites.length) {
+  @for(favor of favorites; track $index) {
+    <h1>{{favor.Description}}</h1>
+    <img [src]="favor.ImagePath" alt="">
+    <button (click)="removeFromFavorites(favor.MouserPartNumber)">Remove</button>
+  }
+} @else {
+  <h1>Вы еще не добавили ни одного товара в избранное</h1>
+}
