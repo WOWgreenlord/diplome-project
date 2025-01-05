@@ -1,15 +1,22 @@
 <h1 class="text-xl font-bold mb-2">Полный список дистрибьюторов</h1>
-@defer {
-  <div class="grid grid-cols-6 gap-4">
+<!-- @defer { -->
+ @if(manufacturers.length) {
+  <div class="grid gap-4 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
     @for(manufacturer of manufacturers; track $index) {
-      <a [href]="manufacturer.ManufacturerLink || '#'" target="_blank" class="p-2 border rounded-xl bg-white items-center flex justify-center text-center">
+      <a [href]="manufacturer.ManufacturerLink || '#'" target="_blank" class="p-2 border rounded-xl bg-white items-center flex justify-center text-center dark:text-white dark:bg-main-surface-500 dark:border-gray-500">
       {{manufacturer.ManufacturerName}}
-    </a>
-}
-</div>
-} @placeholder(minimum 1s) {
-  <div class="card flex justify-center items-center">
-    <p-progressSpinner ariaLabel="loading" />
+      </a>
+    }
   </div>
-}
+ } @else {
+   <ng-template #loading>
+    <div class="card flex justify-center items-center">
+      <p-progressSpinner ariaLabel="loading" />
+    </div>
+  </ng-template>
+ }
+  
+<!-- } @placeholder { -->
+ 
+<!-- } -->
 

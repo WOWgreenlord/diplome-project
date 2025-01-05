@@ -7,6 +7,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { ManufacturersComponent } from './components/manufacturers/manufacturers.component';
 import { CatalogComponent } from './components/catalog/catalog.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
+import { ProductComponent } from './components/product/product.component';
 
 
 export const routes: Routes = [
@@ -14,6 +15,7 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'manufacturers', component: ManufacturersComponent },
   { path: 'catalog', component: CatalogComponent },
+  { path: 'product/:MouserPartNumber', component: ProductComponent },
   { path: 'favorites', component: FavoritesComponent },
   { path: '**', component: PageNotFoundComponent },
 ];

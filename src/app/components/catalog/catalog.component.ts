@@ -1,13 +1,17 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
+
 import { MouserService } from '../../services/mouser.service';
-import { Product } from '../../interfaces/Product';
 import { FavoritesService } from '../../services/favorites.service';
+
+import { Product } from '../../interfaces/Product';
+
 import { DeclinePipe } from '../../pipes/decline.pipe';
 
 @Component({
   selector: 'app-catalog',
   standalone: true,
-  imports: [DeclinePipe],
+  imports: [DeclinePipe, RouterLink],
   templateUrl: './catalog.component.html',
   styleUrl: './catalog.component.css',
 })

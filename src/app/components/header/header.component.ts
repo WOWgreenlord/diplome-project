@@ -62,7 +62,6 @@ export class HeaderComponent implements OnInit {
   test: Product[] = [];
   ngOnInit(): void {
     this.favorites.favorites$.subscribe((data) => {
-      console.log(data)
       this.test = data;
     })
     // this.database.getAllUsers().subscribe((response) => {

@@ -14,6 +14,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 export class ManufacturersComponent implements OnInit {
   mouser = inject(MouserService);
   manufacturers: Manufacturer[] = [];
+  isLoading: boolean = true;
   // manufacturersLinks: Link[] = [
 
   //   {
@@ -36,7 +37,6 @@ export class ManufacturersComponent implements OnInit {
   };
   ngOnInit(): void {
     this.mouser.getManufacturers().subscribe((manufacturers) => {
-      console.log(manufacturers);
       this.manufacturers =
         manufacturers.MouserManufacturerList.ManufacturerList.map(
           (manufacturer: Manufacturer) => ({
@@ -45,6 +45,8 @@ export class ManufacturersComponent implements OnInit {
               this.manufacturerLinks[manufacturer.ManufacturerName] || '', // Присваиваем ссылку
           })
         );
+        console.log(this.manufacturers);
+        this.isLoading = false;
     });
   }
 }

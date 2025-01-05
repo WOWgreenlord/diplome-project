@@ -1,11 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { DeclinePipe } from '../../pipes/decline.pipe';
 import { Product } from '../../interfaces/Product';
 import { FavoritesService } from '../../services/favorites.service';
 
 @Component({
   selector: 'app-favorites',
   standalone: true,
-  imports: [],
+  imports: [DeclinePipe],
   templateUrl: './favorites.component.html',
   styleUrl: './favorites.component.css',
 })
