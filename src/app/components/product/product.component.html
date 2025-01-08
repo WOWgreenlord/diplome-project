@@ -1,7 +1,7 @@
 @if(product) {
   <!-- sm:grid-cols-[20%_60%_20%] md:grid-cols-[25%_50%_25%] lg:grid-cols-[15%_70%_15%] -->
 <div class="flex flex-col rounded-lg bg-white p-3 shadow-md dark:bg-main-surface-300 lg:h-fit gap-2">
-      <img src="{{product.ImagePath}}" alt="" class="m-auto dark:rounded-md">
+      <img src="{{product.ImagePath}}" alt="" class="m-auto dark:rounded-md w-1/4">
       <div class="flex justify-between items-center sm:text-xs md:text-sm lg:text-base">
         <p>{{product.Description}}</p>
         <!-- <p>Имеется в наличии в {{product.Availability | decline}}</p> -->
@@ -22,7 +22,7 @@
       </div>
         </div>
       </div>
-      <ul class="grid grid-cols-[2fr_5fr] border text-base">
+      <ul class="grid grid-cols-[1.5fr_5fr] border text-base">
         <li class="col-1 grid">
           <h2 class="font-semibold border-b p-1">Производитель:</h2>
           <h2 class="font-semibold border-b p-1">Спецификация:</h2>
@@ -32,31 +32,92 @@
         </li>
         <li class="col-2 grid">
           <p class="border-b p-1">{{product.Manufacturer}}</p>
-          <a class="border-b p-1 hover:underline hover:text-blue-500" href="{{product.DataSheetUrl}}" target="_blank">Datasheet (PDF)</a>
+          @if(product.DataSheetUrl && product.DataSheetUrl.trim() !== '') {
+            <a class="flex items-center border-b p-1 hover:underline hover:text-blue-500" [href]="product.DataSheetUrl" (click)="logSheet()" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5 p-1 rounded-full bg-gray-400 hover:bg-blue-500 hover:text-white">
+                <path fill-rule="evenodd" d="M8.25 3.75H19.5a.75.75 0 0 1 .75.75v11.25a.75.75 0 0 1-1.5 0V6.31L5.03 20.03a.75.75 0 0 1-1.06-1.06L17.69 5.25H8.25a.75.75 0 0 1 0-1.5Z" clip-rule="evenodd" />
+                </svg>
+                Datasheet (PDF)
+            </a>
+          } @else {
+            <p class="border-b p-1">Спецификация отсутствует</p>
+          }
+          
           <p class="border-b p-1">{{product.ManufacturerPartNumber}}</p>
-          <p class="border-b p-1">{{product.Description}}</p>
+          <p class="border-b p-1" (click)="toggleDescriptionVisibility()">{{getDescription(product.Description)}}</p>
           <p class="p-1">{{product.Category}}</p>
         </li>
       </ul>
         <h2 class="text-lg font-bold">Ценообразование</h2>
-      <div class="flex">
-      <ul class="grid grid-cols-[1fr_1fr] border text-base w-1/2">
-        <li class="">
-          <h1 class="border-b text-end bg-gray-300">Количество</h1>
-        @for(price of product.PriceBreaks; track $index) {
-          <h2 class="border-b flex justify-end">{{price.Quantity}}</h2>
-        }
-        </li>
-        <li>
-          <h2 class="border-b text-end bg-gray-300">Цена за штуку</h2>
-        @for(price of product.PriceBreaks; track $index) {
-          <h2 class="border-b flex justify-end">{{price.Price}}</h2>
-        }
-        </li>
-      </ul>
-      <input type="text">
-      <p>Введите колиество:</p>
+      <div class="flex items-center gap-5">
+        <ul class="grid grid-cols-[1fr_1fr] border text-base w-1/2">
+          <li class="">
+            <h1 class="border-b text-end bg-gray-300 dark:bg-gray-500">Количество</h1>
+              @for(price of product.PriceBreaks; track $index) {
+                <h2 class="border-b flex justify-end">{{price.Quantity}}</h2>
+              }
+          </li>
+          <li>
+            <h2 class="border-b text-end bg-gray-300 dark:bg-gray-500">Цена за штуку</h2>
+              @for(price of product.PriceBreaks; track $index) {
+                <h2 class="border-b flex justify-end">{{price.Price}}</h2>
+              }
+          </li>
+        </ul>
+        <div class="flex h-full w-1/2 items-center justify-center gap-3">
+          <div class="relative">
+            <div class="flex">
+            <p class="absolute bottom-9 left-[10.5rem]">Минимум: 1</p>
+              <div class="flex relative gap-2">
+                <p>Введите количество:</p>
+                <input type="number" class="outline rounded-md active:shadow-md focus:shadow-md shadow-md dark:text-black" (input)="updatePrice()" min="1" [(ngModel)]="quantity">
+                <button class="p-1 border rounded-md hover:bg-blue-500 hover:text-white hover:border-blue-700 dark:border-gray-700">Купить</button>
+              </div>
+              @if(quantity > 0) {
+            <div class="flex flex-col gap-2 absolute left-[10.5rem] top-9 w-full">
+              <p>Цена за единицу: {{ unitPrice }}</p>
+              <p>Итоговая цена: {{ summaryPrice }}</p>
+            </div>
+          }
+            </div>
+          </div>
+        </div>
       </div>
-      
+      <p-accordion [multiple]="true" class="customStyles">
+        <p-accordionTab header="Сертификация">
+          <ul class="grid grid-cols-2">
+            @for(license of compliance; track $index) {
+              <li class="col-1 border-b">
+                <p>{{license.ComplianceName}}</p>
+              </li>
+              <li class="col-2 border-b">
+                <h2>{{license.ComplianceValue}}</h2>
+              </li>
+            }
+          </ul>
+        </p-accordionTab>
+        <p-accordionTab header="Документы">
+          <ul class="grid grid-cols-[2fr_7fr]">
+            <li class="border-b">
+              <h2>
+                Спецификация:
+              </h2>
+            </li>
+            <li class="border-b">
+              @if(product.DataSheetUrl && product.DataSheetUrl.trim() !== '') {
+                <a [href]="product.DataSheetUrl" (click)="logSheet()" class="hover:underline hover:text-blue-500 flex items-center w-fit" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5 p-1 rounded-full bg-gray-400 hover:bg-blue-500 hover:text-white">
+                <path fill-rule="evenodd" d="M8.25 3.75H19.5a.75.75 0 0 1 .75.75v11.25a.75.75 0 0 1-1.5 0V6.31L5.03 20.03a.75.75 0 0 1-1.06-1.06L17.69 5.25H8.25a.75.75 0 0 1 0-1.5Z" clip-rule="evenodd" />
+                </svg>
+                Datasheet (PDF)
+              </a>
+              } @else {
+                <p class="">Спецификация отсутствует</p>
+              }
+              
+            </li>
+          </ul>
+        </p-accordionTab>
+      </p-accordion>
     </div>
 }

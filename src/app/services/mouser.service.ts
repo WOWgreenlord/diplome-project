@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -8,8 +8,10 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class MouserService {
   http = inject(HttpClient);
   apiKey: string = '4f14c1fc-66a3-4e19-9511-c7ebbee14279';
-  apiKeySecond: string = 'fd0c2586-8d91-4c16-8973-579afa90d8e8';
   apiOrderCartKey: string = '7b1da928-65d7-4368-85e3-7d83e94ff673';
+  // apiKeySecond: string = 'fd0c2586-8d91-4c16-8973-579afa90d8e8';
+
+  
   apiUrlSearch: string = 'https://api.mouser.com/api/v1/search/keyword';
   apiUrlManufacturers: string =
     'https://api.mouser.com/api/v2/search/manufacturerlist';
@@ -46,9 +48,15 @@ export class MouserService {
       },
     };
 
-    return this.http.post(`${this.apiUrlSearch}?apiKey=${this.apiKey}`, body, {
-      headers,
-    });
+    return this.http
+      .post(`${this.apiUrlSearch}?apiKey=${this.apiKey}`, body, {
+        headers,
+      })
+      .pipe(
+        tap((response) => {
+          console.log('Api response:', response);
+        })
+      );
   }
   postProductsCatalog(): Observable<any> {
     const headers = new HttpHeaders({
@@ -66,9 +74,15 @@ export class MouserService {
       },
     };
 
-    return this.http.post(`${this.apiUrlSearch}?apiKey=${this.apiKey}`, body, {
-      headers,
-    });
+    return this.http
+      .post(`${this.apiUrlSearch}?apiKey=${this.apiKey}`, body, {
+        headers,
+      })
+      .pipe(
+        tap((response) => {
+          console.log('Api response catalog:', response);
+        })
+      );
   }
   getManufacturers(): Observable<any> {
     const headers = new HttpHeaders({

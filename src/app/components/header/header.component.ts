@@ -1,7 +1,7 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 import { User } from '../../interfaces/User';
 import { Product } from '../../interfaces/Product';
@@ -17,7 +17,7 @@ import { ModalComponent } from '../modal/modal.component';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [FormsModule, ModalComponent],
+  imports: [FormsModule, ModalComponent, RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
@@ -49,21 +49,21 @@ export class HeaderComponent implements OnInit {
   };
   constructor() {}
   productList?: Product[];
-  
+
   searchByKeywords() {
     this.mouser.postProducts(this.keywords).subscribe((products) => {
       // console.log(products);
-      this.productList = products.SearchResults.Parts
+      this.productList = products.SearchResults.Parts;
       console.log(this.productList);
       this.mouser.setProductData(this.productList);
       this.router.navigate(['catalog']);
-    })
+    });
   }
   test: Product[] = [];
   ngOnInit(): void {
     this.favorites.favorites$.subscribe((data) => {
       this.test = data;
-    })
+    });
     // this.database.getAllUsers().subscribe((response) => {
     //   // console.log(response); Получение всех пользователей
     //   this.users = response;
@@ -134,7 +134,7 @@ export class HeaderComponent implements OnInit {
     console.log('vihod header');
   }
   routeToFavorites() {
-    this.router.navigate(['/favorites'])
+    this.router.navigate(['/favorites']);
   }
 }
 

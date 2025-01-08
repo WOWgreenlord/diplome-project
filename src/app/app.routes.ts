@@ -8,6 +8,7 @@ import { ManufacturersComponent } from './components/manufacturers/manufacturers
 import { CatalogComponent } from './components/catalog/catalog.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { ProductComponent } from './components/product/product.component';
+import { CartComponent } from './components/cart/cart.component';
 
 
 export const routes: Routes = [
@@ -17,5 +18,6 @@ export const routes: Routes = [
   { path: 'catalog', component: CatalogComponent },
   { path: 'product/:MouserPartNumber', component: ProductComponent },
   { path: 'favorites', component: FavoritesComponent },
+  { path: 'cart', component: CartComponent},
   { path: '**', component: PageNotFoundComponent },
 ];

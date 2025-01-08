@@ -9,7 +9,6 @@ import { TagModule } from 'primeng/tag';
 import { Product } from '../../interfaces/Product';
 import { CollapseListComponent } from '../collapse-list/collapse-list.component';
 import { MouserService } from '../../services/mouser.service';
-import { ToshibaService } from '../../services/toshiba.service';
 import { Logo } from '../../interfaces/Logo';
 
 
@@ -22,7 +21,6 @@ import { Logo } from '../../interfaces/Logo';
 })
 export class HomeComponent {
   mouser = inject(MouserService);
-  toshiba = inject(ToshibaService);
   productData?: Product[];
   responsiveOptions: any[] | undefined;
   logos: Logo[] = [

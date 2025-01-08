@@ -5,7 +5,7 @@
     <div class="grid sm:grid-cols-[20%_60%_20%] md:grid-cols-[25%_50%_25%] lg:grid-cols-[15%_70%_15%] rounded-lg bg-white p-3 shadow-md dark:bg-main-surface-300 sm:h-32 lg:h-48">
       <img src="{{test.ImagePath}}" alt="" class="m-auto dark:rounded-md">
       <div class="flex flex-col justify-between sm:text-xs md:text-sm lg:text-base">
-        <a [routerLink]="['/product', test.MouserPartNumber]">{{test.Description}}</a>
+        <a [routerLink]="['/product', test.MouserPartNumber]" class="hover:text-blue-500">{{test.Description}}</a>
         <p>Имеется в наличии в {{test.Availability | decline}}</p>
       </div>
       <div class="flex flex-col items-end gap-2">
@@ -33,7 +33,7 @@
         <div class="grid sm:grid-cols-[20%_60%_20%] md:grid-cols-[25%_50%_25%] lg:grid-cols-[15%_70%_15%] rounded-lg bg-white p-3 shadow-md dark:bg-main-surface-300 sm:h-32 lg:h-48">
       <img src="{{product.ImagePath}}" alt="" class="m-auto dark:rounded-md">
       <div class="flex flex-col justify-between sm:text-xs md:text-sm lg:text-base">
-        <a routerLink="">{{product.Description}}</a>
+        <a [routerLink]="['/product', product.MouserPartNumber]" class="hover:text-blue-500">{{product.Description}}</a>
         <p>Имеется в наличии в {{product.Availability | decline}}</p>
       </div>
       <div class="flex flex-col items-end gap-2">
