@@ -45,7 +45,6 @@ export class ManufacturersComponent implements OnInit {
               this.manufacturerLinks[manufacturer.ManufacturerName] || '', // Присваиваем ссылку
           })
         );
-        console.log(this.manufacturers);
         this.isLoading = false;
     });
   }

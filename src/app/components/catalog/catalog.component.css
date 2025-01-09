@@ -1,0 +1,8 @@
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination button {
+  transition: all 0.3s ease;
+}

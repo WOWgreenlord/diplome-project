@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 
 import { MouserCartService } from '../../services/mouser-cart.service';
 import { Product } from '../../interfaces/Product';
+import { Cart } from '../../interfaces/Cart';
 
 @Component({
   selector: 'app-cart',

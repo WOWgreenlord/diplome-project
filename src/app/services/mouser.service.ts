@@ -51,12 +51,7 @@ export class MouserService {
     return this.http
       .post(`${this.apiUrlSearch}?apiKey=${this.apiKey}`, body, {
         headers,
-      })
-      .pipe(
-        tap((response) => {
-          console.log('Api response:', response);
-        })
-      );
+      });
   }
   postProductsCatalog(): Observable<any> {
     const headers = new HttpHeaders({
@@ -67,7 +62,7 @@ export class MouserService {
     const body = {
       SearchByKeywordRequest: {
         keyword: 'преобразователь',
-        records: 10,
+        // records:,
         startingRecord: 0,
         searchOptions: 'string',
         searchWithYourSignUpLanguage: true,
@@ -78,11 +73,6 @@ export class MouserService {
       .post(`${this.apiUrlSearch}?apiKey=${this.apiKey}`, body, {
         headers,
       })
-      .pipe(
-        tap((response) => {
-          console.log('Api response catalog:', response);
-        })
-      );
   }
   getManufacturers(): Observable<any> {
     const headers = new HttpHeaders({
@@ -93,7 +83,4 @@ export class MouserService {
       headers,
     });
   }
-  // getManufacturersLogos(): Observable<Logos[]> {
-  // return this.http.get<Logos[]>('assets/logos.json');
-  // }
 }

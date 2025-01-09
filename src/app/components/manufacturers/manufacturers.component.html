@@ -1,5 +1,5 @@
 <h1 class="text-xl font-bold mb-2">Полный список дистрибьюторов</h1>
-<!-- @defer { -->
+@defer {
  @if(manufacturers.length) {
   <div class="grid gap-4 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
     @for(manufacturer of manufacturers; track $index) {
@@ -16,7 +16,7 @@
   </ng-template>
  }
   
-<!-- } @placeholder { -->
- 
-<!-- } -->
+} @placeholder (minimum 1s) {
+ <p-progressSpinner class="flex items-center justify-center" ariaLabel="loading" />
+}
 
