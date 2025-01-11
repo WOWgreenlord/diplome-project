@@ -9,6 +9,7 @@ import { CatalogComponent } from './components/catalog/catalog.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { ProductComponent } from './components/product/product.component';
 import { CartComponent } from './components/cart/cart.component';
+import { OrderComponent } from './components/order/order.component';
 
 
 export const routes: Routes = [
@@ -19,5 +20,6 @@ export const routes: Routes = [
   { path: 'product/:MouserPartNumber', component: ProductComponent },
   { path: 'favorites', component: FavoritesComponent },
   { path: 'cart', component: CartComponent},
+  { path: 'order', component: OrderComponent},
   { path: '**', component: PageNotFoundComponent },
 ];

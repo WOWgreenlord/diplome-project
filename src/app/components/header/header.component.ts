@@ -13,6 +13,7 @@ import { FavoritesService } from '../../services/favorites.service';
 import { MouserService } from '../../services/mouser.service';
 
 import { ModalComponent } from '../modal/modal.component';
+import { MouserCartService } from '../../services/mouser-cart.service';
 
 @Component({
   selector: 'app-header',
@@ -29,6 +30,7 @@ export class HeaderComponent implements OnInit {
   destroyRef = inject(DestroyRef);
   router = inject(Router);
   favorites = inject(FavoritesService);
+  mouserCart = inject(MouserCartService);
   isDark: boolean = false;
   isModalOpen: boolean = false;
   isModalInfoOpen: boolean = false;
@@ -52,22 +54,27 @@ export class HeaderComponent implements OnInit {
 
   searchByKeywords() {
     this.mouser.postProducts(this.keywords).subscribe((products) => {
-      // console.log(products);
-      this.productList = products.SearchResults.Parts;
-      console.log(this.productList);
+      if(products?.SearchResults?.Parts) {
+        this.productList = products.SearchResults.Parts;
+        console.log(this.productList);
+      }
       this.mouser.setProductData(this.productList);
       this.router.navigate(['catalog']);
     });
   }
   test: Product[] = [];
+  cart: Product[] = [];
   ngOnInit(): void {
     this.favorites.favorites$.subscribe((data) => {
       this.test = data;
     });
-    // this.database.getAllUsers().subscribe((response) => {
-    //   // console.log(response); Получение всех пользователей
-    //   this.users = response;
-    // });
+    this.mouserCart.cart$.subscribe((data) => {
+      this.cart = data;
+    })
+    this.database.getAllUsers().subscribe((response) => {
+      // console.log(response); //Получение всех пользователей
+      this.users = response;
+    });
     this.auth.isLogged$
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((value) => {

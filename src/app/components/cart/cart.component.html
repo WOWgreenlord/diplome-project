@@ -1,9 +1,80 @@
-@if(cartItems.length == 0) {
+@if(cartData?.CartItems.length == 0) {
   <div class="flex flex-col items-center justify-center text-xl">
     <img src="background/Empty-Cart.png" alt="Empty Cart Picture" class="w-1/3">
     <h1 class="font-bold">Корзина пуста</h1>
     <p>Воспользуйтесь <a routerLink="/catalog" class="hover:underline text-blue-700">каталогом</a> или поиском</p>
   </div>
 } @else {
-  <h1 class="text-xl font-bold mb-2">Избранное</h1>
+  <h1 class="text-xl font-bold mb-2">Корзина</h1>
+    <!-- <div class="wrapper flex flex-col gap-3"> -->
+  <div class="container mx-auto p-4">
+  <table class="table-auto border-collapse border border-gray-500 w-full">
+  <!-- Заголовки таблицы -->
+  <thead>
+    <tr class="bg-gray-200">
+      @for(header of headers; track $index) {
+        <th class="border border-gray-500 px-2 py-2 text-left text-sm w-20">{{ header }}</th>
+      }
+    </tr>
+  </thead>
+
+  <!-- Тело таблицы -->
+  <tbody class="text-sm text-center">
+    @for(item of cartData?.CartItems; track $index) {
+    <tr>
+      <!-- Номер -->
+      <td class="border border-gray-500 w-12 text-center ">
+        <h2>{{$index + 1}}</h2>
+      </td>
+
+      <!-- Второй столбец с большой информацией -->
+      <td class="border border-gray-500 align-top w-96">
+        <div class="flex flex-col space-y-1">
+          <div class="text-start">
+            <span class="font-semibold">Артикул Mouser:</span>
+            <span class="text-xs break-words">{{item.MouserPartNumber}}</span>
+          </div>
+          <div class="text-start">
+            <span class="font-semibold">Артикул производителя:</span>
+            <span class="text-xs break-words">{{item.MfrPartNumber}}</span>
+          </div>
+          <div class="text-start">
+            <span class="font-semibold">Производитель:</span>
+            <span class="text-xs break-words">{{item.Manufacturer}}</span>
+          </div>
+        </div>
+      </td>
+
+      <!-- Короткие столбцы -->
+      <td class="border border-gray-500 w-32 truncate">
+        <p class="text-xs break-words">{{item.Description}}</p>
+      </td>
+
+      <td class="border border-gray-500 w-12 text-center">
+        <p>{{item.Quantity}}</p>
+      </td>
+
+      <td class="border border-gray-500 w-16 text-center">
+        <p>{{item.UnitPrice + '$'}}</p>
+      </td>
+
+      <td class="border border-gray-500 w-20 text-center">
+        <p>{{item.ExtendedPrice + '$'}}</p>
+      </td>
+
+      <!-- Удаление -->
+      <td class="border border-gray-500 w-12 text-center">
+        <button class="p-1 bg-red-500 hover:bg-red-600 text-white rounded" (click)="removeItem(item.MouserPartNumber)">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+          </svg>
+        </button>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
+<button (click)="navigateToOrder()">Оформление заказа</button>
+
+</div>
 }

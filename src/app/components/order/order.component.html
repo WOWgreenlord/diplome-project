@@ -1,0 +1,48 @@
+<form (formGroup)="orderForm" (ngSubmit)="submitOrder()">
+  <div>
+    <label for="firstName">First Name:</label>
+    <input id="firstName" formControlName="firstName" />
+  </div>
+  
+  <div>
+    <label for="lastName">Last Name:</label>
+    <input id="lastName" formControlName="lastName" />
+  </div>
+
+  <div>
+    <label for="addressOne">Address Line 1:</label>
+    <input id="addressOne" formControlName="addressOne" />
+  </div>
+
+  <div>
+    <label for="addressTwo">Address Line 2:</label>
+    <input id="addressTwo" formControlName="addressTwo" />
+  </div>
+
+  <div>
+    <label for="city">City:</label>
+    <input id="city" formControlName="city" />
+  </div>
+
+  <div>
+    <label for="stateOrProvince">State or Province:</label>
+    <input id="stateOrProvince" formControlName="stateOrProvince" />
+  </div>
+
+  <div>
+    <label for="postalCode">Postal Code:</label>
+    <input id="postalCode" formControlName="postalCode" />
+  </div>
+
+  <div>
+    <label for="phoneNumber">Phone Number:</label>
+    <input id="phoneNumber" formControlName="phoneNumber" />
+  </div>
+
+  <div>
+    <label for="emailAddress">Email Address:</label>
+    <input id="emailAddress" formControlName="emailAddress" type="email" />
+  </div>
+
+  <button type="submit" [disabled]="!orderForm?.invalid">Submit Order</button>
+</form>

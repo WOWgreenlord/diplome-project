@@ -6,6 +6,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class DeclinePipe implements PipeTransform {
   transform(value: string): string {
+    if (!value || typeof value !== 'string') {
+      return ''; // Возвращаем пустую строку, если значение не определено или не строка
+    }
+
     const [quantity, ...rest] = value.split(' ');
     const baseWord = rest[0];
     const additionalText = rest.slice(1).join(' ');

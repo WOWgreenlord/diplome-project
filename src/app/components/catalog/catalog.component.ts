@@ -45,7 +45,6 @@ export class CatalogComponent implements OnInit {
   ngOnInit(): void {
     this.mouser.productData$.subscribe((data) => {
       this.productList = data;
-      
     });
     this.mouser.postProductsCatalog().subscribe((data) => {
       this.catalogProductList = data.SearchResults.Parts;
@@ -55,5 +54,18 @@ export class CatalogComponent implements OnInit {
   addToFavorites(product: Product) {
     this.favorites.addToFavorites(product);
     console.log(`Продукт добавлен в избранное:`, product);
+  }
+  onBuyClick(product: Product): void {
+    const quantity = 1; // Здесь можно изменить количество товара, если требуется
+    this.mouserCart.addToCart(product, quantity).subscribe({
+      next: (response) => {
+        console.log('Товар добавлен в корзину:', response);
+        alert('Товар успешно добавлен в корзину');
+      },
+      error: (err) => {
+        console.error('Ошибка при добавлении товара в корзину:', err);
+        alert('Произошла ошибка при добавлении товара в корзину');
+      },
+    });
   }
 }
