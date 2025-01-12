@@ -7,7 +7,7 @@
 } @else {
   <h1 class="text-xl font-bold mb-2">Корзина</h1>
     <!-- <div class="wrapper flex flex-col gap-3"> -->
-  <div class="container mx-auto p-4">
+  <div class="container mx-auto p-4 flex flex-col items-end">
   <table class="table-auto border-collapse border border-gray-500 w-full">
   <!-- Заголовки таблицы -->
   <thead>
@@ -46,12 +46,29 @@
       </td>
 
       <!-- Короткие столбцы -->
-      <td class="border border-gray-500 w-32 truncate">
+      <td class="border border-gray-500 w-72 break-words">
         <p class="text-xs break-words">{{item.Description}}</p>
       </td>
 
       <td class="border border-gray-500 w-12 text-center">
-        <p>{{item.Quantity}}</p>
+        <div class="flex items-center justify-center space-x-2">
+    <button 
+      (click)="updateQuantity(item, item.Quantity - 1)" 
+      class="p-1 bg-gray-300 hover:bg-gray-400 rounded">
+      -
+    </button>
+    <input 
+      type="number" 
+      [value]="item?.Quantity || 1" 
+      (change)="onQuantityChange($event, item)" 
+      class="w-12 text-center border rounded" 
+      min="1">
+    <button 
+      (click)="updateQuantity(item, item.Quantity + 1)" 
+      class="p-1 bg-gray-300 hover:bg-gray-400 rounded">
+      +
+    </button>
+  </div>
       </td>
 
       <td class="border border-gray-500 w-16 text-center">
@@ -74,7 +91,7 @@
     }
   </tbody>
 </table>
-<button (click)="navigateToOrder()">Оформление заказа</button>
+<button (click)="navigateToOrder()" class="p-2 m-5 w-44 rounded-lg bg-green-400 hover:bg-green-500 hover:shadow-md">Оформление заказа</button>
 
 </div>
 }

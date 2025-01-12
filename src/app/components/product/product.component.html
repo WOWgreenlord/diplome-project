@@ -87,7 +87,55 @@
           </div>
         </div>
       </div>
-      <p-accordion [multiple]="true" class="customStyles">
+      <mat-accordion>
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Сертификация
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <ul class="grid grid-cols-2">
+            @for(license of compliance; track $index) {
+              <li class="col-1 border-b">
+                <p>{{license.ComplianceName}}</p>
+              </li>
+              <li class="col-2 border-b">
+                <h2>{{license.ComplianceValue}}</h2>
+              </li>
+            }
+          </ul>
+  </mat-expansion-panel>
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Документы
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <ul class="grid grid-cols-[2fr_7fr]">
+            <li class="border-b">
+              <h2>
+                Спецификация:
+              </h2>
+            </li>
+            <li class="border-b">
+              @if(product.DataSheetUrl && product.DataSheetUrl.trim() !== '') {
+                <a [href]="product.DataSheetUrl" (click)="logSheet()" class="hover:underline hover:text-blue-500 flex items-center w-fit" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5 p-1 rounded-full bg-gray-400 hover:bg-blue-500 hover:text-white">
+                <path fill-rule="evenodd" d="M8.25 3.75H19.5a.75.75 0 0 1 .75.75v11.25a.75.75 0 0 1-1.5 0V6.31L5.03 20.03a.75.75 0 0 1-1.06-1.06L17.69 5.25H8.25a.75.75 0 0 1 0-1.5Z" clip-rule="evenodd" />
+                </svg>
+                Datasheet (PDF)
+              </a>
+              } @else {
+                <p class="">Спецификация отсутствует</p>
+              }
+            </li>
+          </ul>
+  </mat-expansion-panel>
+</mat-accordion>
+
+      <!-- <p-accordion [multiple]="true" class="customStyles">
         <p-accordionTab header="Сертификация">
           <ul class="grid grid-cols-2">
             @for(license of compliance; track $index) {
@@ -122,6 +170,6 @@
             </li>
           </ul>
         </p-accordionTab>
-      </p-accordion>
+      </p-accordion> -->
     </div>
 }

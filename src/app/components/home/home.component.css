@@ -9,11 +9,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 0 !important;
 }
 :host ::ng-deep .p-carousel-prev:hover, :host ::ng-deep .p-carousel-next:hover {
-  background-color: #007ad9; /* Цвет фона */
-  color: white;             /* Цвет иконки */
+  background-color: #007ad9;
+  color: white;
   border: none;
   padding: 15px;
   border-radius: 50%;

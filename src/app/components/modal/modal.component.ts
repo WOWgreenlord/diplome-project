@@ -5,6 +5,7 @@ import {
   FormControl,
   RequiredValidator,
   FormsModule,
+  Validators,
 } from '@angular/forms';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
@@ -15,12 +16,7 @@ import { User } from '../../interfaces/User';
 @Component({
   selector: 'app-modal',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    FormsModule,
-    RouterLink,
-    RouterLinkActive,
-  ],
+  imports: [ReactiveFormsModule, FormsModule, RouterLink, RouterLinkActive],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.css',
 })
@@ -38,11 +34,11 @@ export class ModalComponent {
   email: string = '';
   passwordType: string = 'password';
 
-  profileForm = new FormGroup({
-    username: new FormControl(''),
-    email: new FormControl(''),
-    password: new FormControl(''),
-    name: new FormControl(''),
+  profileForm: FormGroup = new FormGroup({
+    name: new FormControl<string>('', [Validators.required]), // Для регистрации
+    username: new FormControl<string>(''), // Пока не используется
+    email: new FormControl<string>('', [Validators.required, Validators.email]),
+    password: new FormControl<string>('', [Validators.required]),
   });
 
   closeModal() {
@@ -58,7 +54,7 @@ export class ModalComponent {
           this.auth.setUserFullname(user.username);
           this.auth.isLogged$.next(true);
           this.username = user.name;
-          this.email = user.email
+          this.email = user.email;
           this.loginError = '';
           this.closeModal();
         } else {
@@ -76,6 +72,59 @@ export class ModalComponent {
     } else {
       this.passwordType = 'password';
       this.isPasswordShown = false;
+    }
+  }
+  toggleRegister(): void {
+    this.isRegisterOpen = !this.isRegisterOpen;
+    // Очистка полей формы при переключении
+    this.profileForm.reset();
+  }
+
+  onRegister(): void {
+    const { name, email, password } = this.profileForm.value;
+
+    if (name && email && password) {
+      const newUser: User = { name, email, password, username: '' }; // Создаем объект User
+
+      this.database.addUser(newUser).subscribe({
+        next: () => {
+          // Успешная регистрация
+          this.loginError = '';
+          this.toggleRegister(); // Вернуться к форме входа
+        },
+        error: (err) => {
+          this.loginError = 'Ошибка регистрации: ' + err.message;
+        },
+      });
+    } else {
+      this.loginError = 'Заполните все поля';
+    }
+  }
+
+  onLogin(): void {
+    const { email, password } = this.profileForm.value;
+
+    if (email && password) {
+      this.database.getUser(email, password).subscribe({
+        next: (user: User | null) => {
+          if (user) {
+            // Устанавливаем данные пользователя в сервис AuthService
+            this.auth.setUser(user.name);
+            this.auth.setEmail(user.email);
+            this.auth.setUserFullname(user.username);
+            this.auth.isLogged$.next(true);
+            this.loginError = '';
+            this.closeModal();
+          } else {
+            this.loginError = 'Неверный email или пароль';
+          }
+        },
+        error: (err) => {
+          this.loginError = 'Ошибка входа: ' + err.message;
+        },
+      });
+    } else {
+      this.loginError = 'Заполните все поля';
     }
   }
 }

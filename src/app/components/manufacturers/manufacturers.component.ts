@@ -2,12 +2,11 @@ import { Component, inject, OnInit } from '@angular/core';
 import { MouserService } from '../../services/mouser.service';
 import { Manufacturer } from '../../interfaces/Manufacturer';
 import { RouterLink } from '@angular/router';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @Component({
   selector: 'app-manufacturers',
   standalone: true,
-  imports: [RouterLink, ProgressSpinnerModule],
+  imports: [RouterLink],
   templateUrl: './manufacturers.component.html',
   styleUrl: './manufacturers.component.css',
 })

@@ -15,6 +15,7 @@ export class MouserCartService {
   cartUrl: string = '/api/v1/cart';
   cartInsertUrl: string = '/api/v1/cart/items/insert';
   cartRemoveUrl: string = '/api/v1/cart/item/remove';
+  cartUpdateUrl: string = '/api/v1/cart/items/update';
 
   cart: Product[] = [];
   private cartSubject = new BehaviorSubject<Product[]>([]);
@@ -62,5 +63,29 @@ export class MouserCartService {
       .set('mouserPartNumber', mouserPartNumber);
 
     return this.http.post(this.cartRemoveUrl, null, { params });
+  }
+  updateCartItemQuantity(
+    mouserPartNumber: string,
+    quantity: number
+  ): Observable<any> {
+    const url = `${this.cartUpdateUrl}?apiKey=${this.apiKey}`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    });
+
+    const body = {
+      CartKey: this.cartKey,
+      CartItems: [
+        {
+          MouserPartNumber: mouserPartNumber,
+          Quantity: quantity,
+          CustomerPartNumber: '',
+          PackagingChoice: 'None',
+        },
+      ],
+    };
+
+    return this.http.post<any>(url, body, { headers });
   }
 }

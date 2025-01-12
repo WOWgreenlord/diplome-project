@@ -62,5 +62,44 @@ export class CartComponent implements OnInit {
   navigateToOrder(): void {
     this.router.navigate(['/order']); // Навигация на компонент оформления заказа
   }
+  updateQuantity(
+    item: { MouserPartNumber: string; Quantity: number } | null,
+    newQuantity: any
+  ): void {
+    if (!item) {
+      console.error('Item is null or undefined');
+      return;
+    }
+
+    const parsedQuantity = parseInt(newQuantity, 10);
+
+    if (!parsedQuantity || parsedQuantity <= 0) {
+      alert('Количество должно быть больше нуля!');
+      return;
+    }
+
+    this.mouserCart
+      .updateCartItemQuantity(item.MouserPartNumber, parsedQuantity)
+      .subscribe({
+        next: (response) => {
+          console.log('Количество обновлено:', response);
+          this.refreshCart();
+        },
+        error: (error) => {
+          console.error('Ошибка при обновлении количества:', error);
+        },
+      });
+  }
+  onQuantityChange(event: Event, item: any): void {
+    const input = event.target as HTMLInputElement; // Приведение типа
+    const newQuantity = parseInt(input.value, 10);
+
+    if (!newQuantity || newQuantity <= 0) {
+      alert('Количество должно быть больше нуля!');
+      return;
+    }
+
+    this.updateQuantity(item, newQuantity);
+  }
 }
 

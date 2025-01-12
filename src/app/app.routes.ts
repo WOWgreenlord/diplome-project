@@ -10,6 +10,7 @@ import { FavoritesComponent } from './components/favorites/favorites.component';
 import { ProductComponent } from './components/product/product.component';
 import { CartComponent } from './components/cart/cart.component';
 import { OrderComponent } from './components/order/order.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 export const routes: Routes = [
@@ -21,5 +22,6 @@ export const routes: Routes = [
   { path: 'favorites', component: FavoritesComponent },
   { path: 'cart', component: CartComponent},
   { path: 'order', component: OrderComponent},
+  { path: 'profile', component: ProfileComponent},
   { path: '**', component: PageNotFoundComponent },
 ];

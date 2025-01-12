@@ -15,53 +15,11 @@
 </div>
 
 <h2 class="sm:text-base md:text-lg font-semibold lg:text-2xl">Дистрибуция</h2>
-
- <div class="card z-0 relative">
-    <p-carousel 
-        [value]="logos" 
-        [numVisible]="5" 
-        [numScroll]="1" 
-        [circular]="true" 
-        [responsiveOptions]="responsiveOptions"
-        autoplayInterval="5000"
-        appendTo="body">
-            <ng-template let-img pTemplate="item">
-                <div class="flex justify-center">
-                    <div class="">
-                        <div class="sm:h-40 lg:h-52 flex items-center">
-                            <a [href]="img.Site" target="_blank">
-                            <div class="dark:bg-main-surface-200 bg-white h-40 flex items-center rounded-xl">
-                                <img 
-                                [src]="img.Link" 
-                                class="w-40 border-round" />
-                            </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </ng-template>
-    </p-carousel>
-</div>
+<ul class="flex gap-10 items-center justify-center mt-5">
+    @for(logo of logos; track $index) {
+        <li class="bg-white rounded-lg w-36 h-40 flex items-center justify-center">
+            <img [src]="logo.Link" alt="" class="w-28">
+        </li>
+    }
+</ul>
 </main>
-
-
-
-<!-- @for(img of imgs; track $index) { -->
-  <!-- <img src="{{img.src}}" alt=""> -->
-<!-- } -->
-
-
-
-
-
-
-<!-- @for(product of productData; track $index) {
-  <h1>{{product.MouserPartNumber}}</h1>
-  <img src="{{product.ImagePath}}" alt="">
-  <p>{{product.Description}}</p>
-} -->
-
-
-    
-
-

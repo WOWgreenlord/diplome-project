@@ -11,6 +11,7 @@ export class AuthService {
   private userName: string = '';
   private eMail: string = '';
   private fullName: string = '';
+  private passWord: string = '';
   get username(): string {
     return this.userName;
   }
@@ -19,6 +20,9 @@ export class AuthService {
   }
   get fullname(): string {
     return this.fullName;
+  }
+  get password(): string {
+    return this.passWord;
   }
   
 
@@ -34,6 +38,9 @@ export class AuthService {
   }
   setUserFullname(fullname: string) {
     this.fullName = fullname;
+  }
+  setPassword(password: string) {
+    this.passWord = password
   }
 
   logOut() {

@@ -1,7 +1,11 @@
-import { Component, inject, OnInit } from '@angular/core';
+import {
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { AccordionModule } from 'primeng/accordion';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { MouserService } from '../../services/mouser.service';
 import { PriceBreak, Product } from '../../interfaces/Product';
@@ -10,7 +14,7 @@ import { FavoritesService } from '../../services/favorites.service';
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [FormsModule, AccordionModule],
+  imports: [FormsModule, MatExpansionModule],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css',
 })
@@ -26,11 +30,11 @@ export class ProductComponent implements OnInit {
   price: number[] = [];
   compliance: any;
   isFullDescriptionVisible: boolean = false; // Флаг для управления состоянием описания
-
+  panelOpenState = false;
   ngOnInit(): void {
     this.router.paramMap.subscribe((params) => {
       this.mouserPartNumber = params.get('MouserPartNumber') || '';
-      this.loadProductDetails()
+      this.loadProductDetails();
     });
     this.mouser.productData$.subscribe((data) => {
       if (data) {
@@ -43,7 +47,7 @@ export class ProductComponent implements OnInit {
       if (!this.product) {
         this.loadProductDetails();
       } else {
-        this.compliance = this.product.ProductCompliance
+        this.compliance = this.product.ProductCompliance;
       }
     });
   }

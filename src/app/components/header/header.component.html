@@ -213,10 +213,11 @@
           </svg>
         </button>
         } @if(isLogged) {
-        <button
+          <div class="flex gap-2">
+            <button
           class="flex items-center p-2 gap-2 border rounded-full border-transparent transition-all duration-200 hover:text-white hover:bg-blue-500"
-          (click)="openModalInfo()"
-        >
+          (click)="navigateToProfile()"
+          >
           <p>{{ logIn }}</p>
           <!-- Аккаунт -->
           <svg
@@ -241,11 +242,13 @@
           <p>Выход</p>
           <!-- Аккаунт -->
         </button>
+          </div>
         }
         <app-modal
           [isOpen]="isModalOpen"
           [isOpenInfo]="isModalInfoOpen"
           (close)="closeModal()"
+          class="z-50"
         ></app-modal>
         @if(isToggled) {
         <p

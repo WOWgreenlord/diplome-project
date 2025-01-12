@@ -1,0 +1,18 @@
+:host ::ng-deep mat-panel-title {
+  font-size: 24px;
+}
+:host ::ng-deep .mat-expansion-indicator {
+  /* width: 100px; */
+  /* height: 100px; */
+  color: black;
+  /* padding: 10px; */
+  width: 70px;
+  height: 70px;
+  /* margin: 0 auto; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+:host ::ng-deep .mat-expansion-indicator:hover {
+  background-color: rgba(180, 179, 179, 0.758);
+}

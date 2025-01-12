@@ -143,5 +143,8 @@ export class HeaderComponent implements OnInit {
   routeToFavorites() {
     this.router.navigate(['/favorites']);
   }
+  navigateToProfile() {
+    this.router.navigate(['/profile']);
+  }
 }
 
