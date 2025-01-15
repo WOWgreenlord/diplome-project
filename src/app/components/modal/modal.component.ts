@@ -80,25 +80,26 @@ export class ModalComponent {
     this.profileForm.reset();
   }
 
+  formErrorMessage: string = ''; // Для отображения сообщений об ошибках
+
   onRegister(): void {
+    if (this.profileForm.invalid) {
+      this.formErrorMessage = 'Заполните все поля';
+      return;
+    }
     const { name, email, password } = this.profileForm.value;
 
-    if (name && email && password) {
-      const newUser: User = { name, email, password, username: '' }; // Создаем объект User
+    const newUser: User = { name, email, password, username: '' };
 
-      this.database.addUser(newUser).subscribe({
-        next: () => {
-          // Успешная регистрация
-          this.loginError = '';
-          this.toggleRegister(); // Вернуться к форме входа
-        },
-        error: (err) => {
-          this.loginError = 'Ошибка регистрации: ' + err.message;
-        },
-      });
-    } else {
-      this.loginError = 'Заполните все поля';
-    }
+    this.database.addUser(newUser).subscribe({
+      next: () => {
+        this.loginError = '';
+        this.toggleRegister();
+      },
+      error: (err) => {
+        this.loginError = 'Ошибка регистрации: ' + err.message;
+      },
+    });
   }
 
   onLogin(): void {

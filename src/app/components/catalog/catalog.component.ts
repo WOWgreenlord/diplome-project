@@ -22,33 +22,13 @@ export class CatalogComponent implements OnInit {
   favorites = inject(FavoritesService);
   productList?: Product[];
   catalogProductList?: Product[];
-  currentPage: number = 1; // текущая страница
-  itemsPerPage: number = 10; // количество элементов на одной странице
-  totalItems: number = 0; // общее количество продуктов
 
-  get paginatedCatalogList(): Product[] {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
-    return this.catalogProductList?.slice(startIndex, endIndex) || [];
-  }
-  get totalPages(): number {
-    return Math.ceil(
-      (this.catalogProductList?.length || 0) / this.itemsPerPage
-    );
-  }
-
-  changePage(page: number): void {
-    if (page >= 1 && page <= this.totalPages) {
-      this.currentPage = page;
-    }
-  }
   ngOnInit(): void {
     this.mouser.productData$.subscribe((data) => {
       this.productList = data;
     });
     this.mouser.postProductsCatalog().subscribe((data) => {
       this.catalogProductList = data.SearchResults.Parts;
-      this.totalItems = +this.catalogProductList!.length;
     });
   }
   addToFavorites(product: Product) {

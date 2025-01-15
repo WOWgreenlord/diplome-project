@@ -82,16 +82,16 @@ export class HeaderComponent implements OnInit {
         this.isLogged = value;
         this.logIn = value ? this.auth.username : 'Выполните вход';
       });
-    // this.rates.getRatesUSD().subscribe(data => {
-    //   this.ratesUSD = data.data.RUB
-    //   this.ratesUSD = +this.ratesUSD.toFixed(2);
-    //   console.log(`USD TO RUB:${data.data.RUB}`);
-    // })
-    // this.rates.getRatesEUR().subscribe(data => {
-    //   this.ratesEUR = data.data.RUB
-    //   this.ratesEUR = +this.ratesEUR.toFixed(2);
-    //   console.log(`EUR TO RUB:${data.data.RUB}`)
-    // })
+    this.rates.getRatesUSD().subscribe(data => {
+      this.ratesUSD = data.data.RUB
+      this.ratesUSD = +this.ratesUSD.toFixed(2);
+      console.log(`USD TO RUB:${data.data.RUB}`);
+    })
+    this.rates.getRatesEUR().subscribe(data => {
+      this.ratesEUR = data.data.RUB
+      this.ratesEUR = +this.ratesEUR.toFixed(2);
+      console.log(`EUR TO RUB:${data.data.RUB}`)
+    })
   }
   darkTheme() {
     this.isDark = !this.isDark;

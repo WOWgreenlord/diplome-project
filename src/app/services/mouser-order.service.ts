@@ -7,20 +7,18 @@ import { Observable } from 'rxjs';
 })
 export class MouserOrderService {
   apiKey = '7b1da928-65d7-4368-85e3-7d83e94ff673';
-  apiUrl: string = '/api/v1/order/';
+  apiUrl: string = `/api/v1/order/?apiKey=${this.apiKey}`;
 
   http = inject(HttpClient);
   constructor() {}
 
   // Метод для отправки заказа
-  submitOrder(orderData: any): Observable<any> {
+  createOrder(orderData: any): Observable<any> {
     const headers = new HttpHeaders({
-      Accept: 'application/json',
       'Content-Type': 'application/json',
+      Accept: 'application/json',
     });
 
-    const url = `${this.apiUrl}?apiKey=${this.apiKey}`;
-
-    return this.http.post(url, orderData, { headers });
+    return this.http.post(this.apiUrl, orderData, { headers });
   }
 }

@@ -1,23 +1,58 @@
-<h1 class="text-xl font-bold mb-2">Информация об учетной записи</h1>
-<div class="grid grid-cols-2">
-  <div>
-    <h1>Name</h1>
-    <p>{{fullName}}</p>
+<div class="max-w-7xl mx-auto p-6">
+  <!-- Заголовок страницы -->
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Учетная запись</h1>
+    <button
+      class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+    >
+      Выйти
+    </button>
   </div>
-  <div>
-    <h2>Password</h2>
-    <p>{{password}}</p>
+
+  <!-- Информация о пользователе -->
+  <div class="bg-white shadow rounded-lg p-6 mb-6 dark:bg-main-surface-400 dark:text-white">
+    <h2 class="text-2xl font-semibold mb-4">Личная информация</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="flex flex-col">
+        <label class="font-medium">Имя:</label>
+        <span>{{ username }}</span>
+      </div>
+      <div class="flex flex-col">
+        <label class="font-medium">Email:</label>
+        <span>{{ email }}</span>
+      </div>
+      <div class="flex flex-col">
+        <label class="font-medium">Полное имя:</label>
+        <span>Иванов Иван Иванович</span>
+      </div>
+    </div>
   </div>
-  <div>
-    <h2>Email</h2>
-    <p>{{email}}</p>
-  </div>
-  <div>
-    <h2>Full Name</h2>
-    <p>{{fullName}}</p>
-  </div>
-  <div>
-    <button>Посмотреть заказы</button>
-    <button>Сменить Пароль</button>
+
+  <!-- Список заказов -->
+  <div class="bg-white shadow rounded-lg p-6 dark:bg-main-surface-400 dark:text-white">
+    <h2 class="text-2xl font-semibold mb-4">Ваши заказы</h2>
+      <table class="min-w-full table-auto">
+      <thead>
+        <tr>
+          <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-white">Номер заказа</th>
+          <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-white">Товары</th>
+          <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-white">Дата</th>
+          <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-white">Статус</th>
+          <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-white">Сумма</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="bg-gray-200">
+          @for(info of cartInfo; track $index) {
+            <td class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-white">1</td>
+            <td class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-white">{{info.Description}}</td>
+          <td class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-white">{{date | date: 'yyyy-MM-dd'}}</td>
+          <td class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-white">Выполнен</td>
+          <td class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-white">{{info.ExtendedPrice | currency: "USD"}}</td>
+          }
+        </tr>
+      </tbody>
+    </table>
+    
   </div>
 </div>

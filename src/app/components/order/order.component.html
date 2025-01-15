@@ -1,48 +1,130 @@
-<form (formGroup)="orderForm" (ngSubmit)="submitOrder()">
-  <div>
-    <label for="firstName">First Name:</label>
-    <input id="firstName" formControlName="firstName" />
-  </div>
-  
-  <div>
-    <label for="lastName">Last Name:</label>
-    <input id="lastName" formControlName="lastName" />
-  </div>
+<div class="container mx-auto p-6">
+  <h1 class="text-2xl font-bold mb-4">Оформление заказа</h1>
 
-  <div>
-    <label for="addressOne">Address Line 1:</label>
-    <input id="addressOne" formControlName="addressOne" />
-  </div>
+  <form (submit)="onSubmit()" [formGroup]="orderFormGroup">
+    <h2 class="text-lg font-semibold mb-2">Адрес доставки</h2>
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <label for="firstName" class="block text-sm font-medium">Имя</label>
+        <input
+          type="text"
+          id="firstName"
+          formControlName="firstName"
+          required
+          class="w-full border p-2 rounded"
+          [ngClass]="{'border-red-500': firstName.invalid && firstName.touched}"
+        />
+      </div>
+      <div>
+        <label for="lastName" class="block text-sm font-medium">Фамилия</label>
+        <input
+          type="text"
+          id="lastName"
+          formControlName="lastName"
+          required
+          class="w-full border p-2 rounded"
+          [ngClass]="{'border-red-500': lastName.invalid && lastName.touched}"
+        />
+      </div>
+      <div>
+        <label for="addressOne" class="block text-sm font-medium">Адрес</label>
+        <input
+          type="text"
+          id="addressOne"
+          formControlName="addressOne"
+          required
+          class="w-full border p-2 rounded"
+          [ngClass]="{'border-red-500': addressOne.invalid && addressOne.touched}"
+        />
+      </div>
+      <div>
+        <label for="city" class="block text-sm font-medium">Город</label>
+        <input
+          type="text"
+          id="city"
+          formControlName="city"
+          required
+          class="w-full border p-2 rounded"
+          [ngClass]="{'border-red-500': city.invalid && city.touched}"
+        />
+      </div>
+      <div>
+        <label for="state" class="block text-sm font-medium">Область/Штат</label>
+        <input
+          type="text"
+          id="state"
+          formControlName="state"
+          required
+          class="w-full border p-2 rounded"
+          [ngClass]="{'border-red-500': state.invalid && state.touched}"
+        />
+      </div>
+      <div>
+        <label for="postalCode" class="block text-sm font-medium">Индекс</label>
+        <input
+          type="text"
+          id="postalCode"
+          formControlName="postalCode"
+          required
+          class="w-full border p-2 rounded"
+          [ngClass]="{'border-red-500': postalCode.invalid && postalCode.touched}"
+        />
+      </div>
+      <!-- Новые поля для почты и телефона -->
+      <div>
+        <label for="email" class="block text-sm font-medium">Email</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          required
+          class="w-full border p-2 rounded"
+          [ngClass]="{'border-red-500': email.invalid && email.touched}"
+        />
+      </div>
+      <div>
+        <label for="phone" class="block text-sm font-medium">Телефон</label>
+        <input
+          type="tel"
+          id="phone"
+          formControlName="phone"
+          required
+          class="w-full border p-2 rounded"
+          [ngClass]="{'border-red-500': phone.invalid && phone.touched}"
+        />
+      </div>
+    </div>
 
-  <div>
-    <label for="addressTwo">Address Line 2:</label>
-    <input id="addressTwo" formControlName="addressTwo" />
-  </div>
+    <h2 class="text-lg font-semibold mt-4 mb-2">Оплата</h2>
+    <div class="flex items-center">
+      <label>
+        <input
+          type="radio"
+          name="paymentMethod"
+          formControlName="paymentMethod"
+          value="0"
+          class="mr-2"
+        />
+        Кредитная карта
+      </label>
+      <label class="ml-4">
+        <input
+          type="radio"
+          name="paymentMethod"
+          formControlName="paymentMethod"
+          value="1"
+          class="mr-2"
+        />
+        PayPal
+      </label>
+    </div>
 
-  <div>
-    <label for="city">City:</label>
-    <input id="city" formControlName="city" />
-  </div>
-
-  <div>
-    <label for="stateOrProvince">State or Province:</label>
-    <input id="stateOrProvince" formControlName="stateOrProvince" />
-  </div>
-
-  <div>
-    <label for="postalCode">Postal Code:</label>
-    <input id="postalCode" formControlName="postalCode" />
-  </div>
-
-  <div>
-    <label for="phoneNumber">Phone Number:</label>
-    <input id="phoneNumber" formControlName="phoneNumber" />
-  </div>
-
-  <div>
-    <label for="emailAddress">Email Address:</label>
-    <input id="emailAddress" formControlName="emailAddress" type="email" />
-  </div>
-
-  <button type="submit" [disabled]="!orderForm?.invalid">Submit Order</button>
-</form>
+    <button
+      type="submit"
+      class="bg-green-500 text-white px-4 py-2 mt-4 rounded hover:bg-green-600"
+      [disabled]="orderFormGroup.invalid"
+    >
+      Оформить заказ
+    </button>
+  </form>
+</div>

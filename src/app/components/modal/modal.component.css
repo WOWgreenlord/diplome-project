@@ -1,0 +1,17 @@
+/* В стилях модального окна или формы добавьте такие стили */
+input.ng-invalid.ng-touched {
+  border: 2px solid red;
+  border-radius: 10px;
+
+}
+
+input.ng-valid.ng-touched {
+  border: 2px solid green;
+  border-radius: 10px;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 8px;
+}

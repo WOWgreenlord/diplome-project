@@ -12,6 +12,8 @@ export class AuthService {
   private eMail: string = '';
   private fullName: string = '';
   private passWord: string = '';
+  lastOrder: any; // Переменная для хранения последнего заказа
+
   get username(): string {
     return this.userName;
   }
@@ -24,7 +26,6 @@ export class AuthService {
   get password(): string {
     return this.passWord;
   }
-  
 
   constructor() {}
 
@@ -40,12 +41,20 @@ export class AuthService {
     this.fullName = fullname;
   }
   setPassword(password: string) {
-    this.passWord = password
+    this.passWord = password;
   }
 
   logOut() {
     // this.userSource.next('Выполните вход');
     console.log('vihod');
     this.isLogged$.next(false);
+  }
+
+  setLastOrder(order: any) {
+    this.lastOrder = order;
+  }
+
+  getLastOrder() {
+    return this.lastOrder;
   }
 }
